@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F44C926317F76AB6005A5F79 /* SHXDropboxFontCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926217F76AB6005A5F79 /* SHXDropboxFontCatalog.m */; };
+		F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */; };
+		F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926817F76D8E005A5F79 /* SHXFontManager.m */; };
+		F44C926C17F76F82005A5F79 /* SHXFolderFontCatalogTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */; };
 		F44FCB2517F73D5C006DD0BA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB2417F73D5C006DD0BA /* Cocoa.framework */; };
 		F44FCB2F17F73D5C006DD0BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F44FCB2D17F73D5C006DD0BA /* InfoPlist.strings */; };
 		F44FCB3117F73D5C006DD0BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F44FCB3017F73D5C006DD0BA /* main.m */; };
@@ -17,7 +21,6 @@
 		F44FCB4417F73D5C006DD0BA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB4317F73D5C006DD0BA /* XCTest.framework */; };
 		F44FCB4517F73D5C006DD0BA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB2417F73D5C006DD0BA /* Cocoa.framework */; };
 		F44FCB4D17F73D5C006DD0BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F44FCB4B17F73D5C006DD0BA /* InfoPlist.strings */; };
-		F44FCB4F17F73D5C006DD0BA /* FontyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F44FCB4E17F73D5C006DD0BA /* FontyTests.m */; };
 		F44FCB5D17F741B7006DD0BA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB5C17F741B7006DD0BA /* Security.framework */; };
 		F44FCB6417F7437C006DD0BA /* DropboxOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */; };
 		F44FCB6617F74396006DD0BA /* DropboxOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */; };
@@ -47,6 +50,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F44C925E17F75466005A5F79 /* SHXIFontCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXIFontCatalog.h; path = Sync/SHXIFontCatalog.h; sourceTree = "<group>"; };
+		F44C926117F76AB6005A5F79 /* SHXDropboxFontCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXDropboxFontCatalog.h; path = Sync/SHXDropboxFontCatalog.h; sourceTree = "<group>"; };
+		F44C926217F76AB6005A5F79 /* SHXDropboxFontCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXDropboxFontCatalog.m; path = Sync/SHXDropboxFontCatalog.m; sourceTree = "<group>"; };
+		F44C926417F76CF8005A5F79 /* SHXFolderFontCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXFolderFontCatalog.h; path = Sync/SHXFolderFontCatalog.h; sourceTree = "<group>"; };
+		F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFolderFontCatalog.m; path = Sync/SHXFolderFontCatalog.m; sourceTree = "<group>"; };
+		F44C926717F76D8E005A5F79 /* SHXFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXFontManager.h; path = Sync/SHXFontManager.h; sourceTree = "<group>"; };
+		F44C926817F76D8E005A5F79 /* SHXFontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFontManager.m; path = Sync/SHXFontManager.m; sourceTree = "<group>"; };
+		F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFolderFontCatalogTest.m; path = Sync/SHXFolderFontCatalogTest.m; sourceTree = "<group>"; };
 		F44FCB2117F73D5C006DD0BA /* Fonty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fonty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44FCB2417F73D5C006DD0BA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F44FCB2717F73D5C006DD0BA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -65,7 +76,6 @@
 		F44FCB4317F73D5C006DD0BA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F44FCB4A17F73D5C006DD0BA /* FontyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FontyTests-Info.plist"; sourceTree = "<group>"; };
 		F44FCB4C17F73D5C006DD0BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F44FCB4E17F73D5C006DD0BA /* FontyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontyTests.m; sourceTree = "<group>"; };
 		F44FCB5C17F741B7006DD0BA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxOSX.framework; path = ../DropboxOSX.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +103,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F44C925A17F750EC005A5F79 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				F44C925E17F75466005A5F79 /* SHXIFontCatalog.h */,
+				F44C926117F76AB6005A5F79 /* SHXDropboxFontCatalog.h */,
+				F44C926217F76AB6005A5F79 /* SHXDropboxFontCatalog.m */,
+				F44C926417F76CF8005A5F79 /* SHXFolderFontCatalog.h */,
+				F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */,
+				F44C926717F76D8E005A5F79 /* SHXFontManager.h */,
+				F44C926817F76D8E005A5F79 /* SHXFontManager.m */,
+			);
+			name = Sync;
+			sourceTree = "<group>";
+		};
+		F44C926D17F76F88005A5F79 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */,
+			);
+			name = Sync;
+			sourceTree = "<group>";
+		};
 		F44FCB1817F73D5C006DD0BA = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +169,7 @@
 		F44FCB2A17F73D5C006DD0BA /* Fonty */ = {
 			isa = PBXGroup;
 			children = (
+				F44C925A17F750EC005A5F79 /* Sync */,
 				F44FCB3617F73D5C006DD0BA /* SHXAppDelegate.h */,
 				F44FCB3717F73D5C006DD0BA /* SHXAppDelegate.m */,
 				F44FCB3917F73D5C006DD0BA /* MainMenu.xib */,
@@ -161,7 +194,7 @@
 		F44FCB4817F73D5C006DD0BA /* FontyTests */ = {
 			isa = PBXGroup;
 			children = (
-				F44FCB4E17F73D5C006DD0BA /* FontyTests.m */,
+				F44C926D17F76F88005A5F79 /* Sync */,
 				F44FCB4917F73D5C006DD0BA /* Supporting Files */,
 			);
 			path = FontyTests;
@@ -276,7 +309,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F44C926317F76AB6005A5F79 /* SHXDropboxFontCatalog.m in Sources */,
 				F44FCB3817F73D5C006DD0BA /* SHXAppDelegate.m in Sources */,
+				F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */,
+				F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */,
 				F44FCB3117F73D5C006DD0BA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F44FCB4F17F73D5C006DD0BA /* FontyTests.m in Sources */,
+				F44C926C17F76F82005A5F79 /* SHXFolderFontCatalogTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
