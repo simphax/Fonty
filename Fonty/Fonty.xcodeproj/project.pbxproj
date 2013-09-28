@@ -24,6 +24,10 @@
 		F44FCB5D17F741B7006DD0BA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB5C17F741B7006DD0BA /* Security.framework */; };
 		F44FCB6417F7437C006DD0BA /* DropboxOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */; };
 		F44FCB6617F74396006DD0BA /* DropboxOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */; };
+		F4C1ACF217F79617006107D3 /* SCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACEE17F79617006107D3 /* SCEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F4C1ACF317F79617006107D3 /* SCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF117F79617006107D3 /* SCEvents.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */; };
+		F4C1ACF917F7966D006107D3 /* TestApplication.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C1ACF717F7966D006107D3 /* TestApplication.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,15 @@
 		F44FCB4C17F73D5C006DD0BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F44FCB5C17F741B7006DD0BA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxOSX.framework; path = ../DropboxOSX.framework; sourceTree = "<group>"; };
+		F4C1ACEC17F79617006107D3 /* SCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCConstants.h; path = Libraries/SCEvents/SCConstants.h; sourceTree = "<group>"; };
+		F4C1ACED17F79617006107D3 /* SCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvent.h; path = Libraries/SCEvents/SCEvent.h; sourceTree = "<group>"; };
+		F4C1ACEE17F79617006107D3 /* SCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvent.m; path = Libraries/SCEvents/SCEvent.m; sourceTree = "<group>"; };
+		F4C1ACEF17F79617006107D3 /* SCEventListenerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEventListenerProtocol.h; path = Libraries/SCEvents/SCEventListenerProtocol.h; sourceTree = "<group>"; };
+		F4C1ACF017F79617006107D3 /* SCEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvents.h; path = Libraries/SCEvents/SCEvents.h; sourceTree = "<group>"; };
+		F4C1ACF117F79617006107D3 /* SCEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvents.m; path = Libraries/SCEvents/SCEvents.m; sourceTree = "<group>"; };
+		F4C1ACF517F7966D006107D3 /* SHXTestingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXTestingAppDelegate.h; path = Tests/SHXTestingAppDelegate.h; sourceTree = "<group>"; };
+		F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXTestingAppDelegate.m; path = Tests/SHXTestingAppDelegate.m; sourceTree = "<group>"; };
+		F4C1ACF717F7966D006107D3 /* TestApplication.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestApplication.xib; path = Tests/TestApplication.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +182,8 @@
 		F44FCB2A17F73D5C006DD0BA /* Fonty */ = {
 			isa = PBXGroup;
 			children = (
+				F4C1ACEA17F795F5006107D3 /* External Libraries */,
+				F4C1ACF417F79663006107D3 /* Tests */,
 				F44C925A17F750EC005A5F79 /* Sync */,
 				F44FCB3617F73D5C006DD0BA /* SHXAppDelegate.h */,
 				F44FCB3717F73D5C006DD0BA /* SHXAppDelegate.m */,
@@ -207,6 +222,37 @@
 				F44FCB4B17F73D5C006DD0BA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F4C1ACEA17F795F5006107D3 /* External Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				F4C1ACEB17F79605006107D3 /* SCEvents */,
+			);
+			name = "External Libraries";
+			sourceTree = "<group>";
+		};
+		F4C1ACEB17F79605006107D3 /* SCEvents */ = {
+			isa = PBXGroup;
+			children = (
+				F4C1ACEC17F79617006107D3 /* SCConstants.h */,
+				F4C1ACED17F79617006107D3 /* SCEvent.h */,
+				F4C1ACEE17F79617006107D3 /* SCEvent.m */,
+				F4C1ACEF17F79617006107D3 /* SCEventListenerProtocol.h */,
+				F4C1ACF017F79617006107D3 /* SCEvents.h */,
+				F4C1ACF117F79617006107D3 /* SCEvents.m */,
+			);
+			name = SCEvents;
+			sourceTree = "<group>";
+		};
+		F4C1ACF417F79663006107D3 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F4C1ACF517F7966D006107D3 /* SHXTestingAppDelegate.h */,
+				F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */,
+				F4C1ACF717F7966D006107D3 /* TestApplication.xib */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +337,7 @@
 				F44FCB3D17F73D5C006DD0BA /* Images.xcassets in Resources */,
 				F44FCB3517F73D5C006DD0BA /* Credits.rtf in Resources */,
 				F44FCB3B17F73D5C006DD0BA /* MainMenu.xib in Resources */,
+				F4C1ACF917F7966D006107D3 /* TestApplication.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,11 +356,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4C1ACF317F79617006107D3 /* SCEvents.m in Sources */,
 				F44C926317F76AB6005A5F79 /* SHXDropboxFontCatalog.m in Sources */,
 				F44FCB3817F73D5C006DD0BA /* SHXAppDelegate.m in Sources */,
 				F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */,
 				F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */,
+				F4C1ACF217F79617006107D3 /* SCEvent.m in Sources */,
 				F44FCB3117F73D5C006DD0BA /* main.m in Sources */,
+				F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

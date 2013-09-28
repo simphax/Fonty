@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SHXIFontCatalog.h"
+#import "SCEventListenerProtocol.h"
 
-@interface SHXFolderFontCatalog : NSObject <SHXIFontCatalog> {
+@interface SHXFolderFontCatalog : NSObject <SHXIFontCatalog, SCEventListenerProtocol>
+{
     @private
     NSString *_path;
+    SCEvents *_folderEvents;
 }
 
 -(id) initWithFolder:(NSString *)path;
