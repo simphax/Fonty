@@ -410,9 +410,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Simon/Projekt/Egna\\ projekt/Apps/Mac\\ OS\\ X/Fonty/Fonty",
-					/Users/Simon/Projekt/Fonty,
-					/Users/Simon/Projekt/Fonty/Fonty,
+					..,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fonty/Fonty-Prefix.pch";
@@ -429,9 +427,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/Simon/Projekt/Egna\\ projekt/Apps/Mac\\ OS\\ X/Fonty/Fonty",
-					/Users/Simon/Projekt/Fonty,
-					/Users/Simon/Projekt/Fonty/Fonty,
+					..,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fonty/Fonty-Prefix.pch";
