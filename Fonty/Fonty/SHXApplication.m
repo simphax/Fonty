@@ -10,6 +10,7 @@
 #import "SHXStatusView.h"
 #import "SHXFontManager.h"
 #import "SHXFolderFontCatalog.h"
+#import "NSFileManager+DirectoryLocations.h"
 
 @interface SHXApplication() <SHXIFontManagerDelegate, NSUserNotificationCenterDelegate>
 {
@@ -26,11 +27,35 @@
 {
     SHXFolderFontCatalog *local = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
     SHXFolderFontCatalog *remote = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty"]];
-    
-    _fontManager = [[SHXFontManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:YES];
+
+    _fontManager = [[SHXFontManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:[self isFirstTime]];
     
     _statusView = [[SHXStatusView alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] setDelegate:self];
 }
+
+-(BOOL)isFirstTime
+{
+    NSString *applicationSupportDirectory = [[NSFileManager defaultManager] applicationSupportDirectory];
+    NSString *myPlistPath = [applicationSupportDirectory stringByAppendingPathComponent:@"settings.plist"];
+    NSMutableDictionary *plist;
+    if([[NSFileManager defaultManager] fileExistsAtPath:myPlistPath])
+    {
+        plist = [[NSMutableDictionary alloc] initWithContentsOfFile:myPlistPath];
+    }
+    if(!plist)
+    {
+        plist = [[NSMutableDictionary alloc] init];
+    }
+    
+    BOOL firstTime = ![[plist objectForKey:@"Activated"] boolValue];
+    [plist setObject:@"YES" forKey: @"Activated"];
+    [plist writeToFile:myPlistPath atomically:YES];
+    return firstTime;
+}
+
+#pragma mark SHXIFontManagerDelegate
 
 -(void) fontSyncingBegin:(id)sender
 {
@@ -46,7 +71,18 @@
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"Fonty";
-    notification.informativeText = [NSString stringWithFormat:@"Deleted %lu fonts", (unsigned long)[fonts count]];
+    
+    NSString *message;
+    if([fonts count] == 1)
+    {
+        message = [NSString stringWithFormat:@"Moved %lu Font to the Trash", (unsigned long)[fonts count]];
+    }
+    else
+    {
+        message = [NSString stringWithFormat:@"Moved %lu Fonts to the Trash", (unsigned long)[fonts count]];
+    }
+    
+    notification.informativeText = message;
     notification.soundName = nil;
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
@@ -67,10 +103,27 @@
      */
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"Fonty";
-    notification.informativeText = [NSString stringWithFormat:@"Added %lu fonts", (unsigned long)[fonts count]];
+    
+    NSString *message;
+    if([fonts count] == 1)
+    {
+        message = [NSString stringWithFormat:@"Synced %lu Font", (unsigned long)[fonts count]];
+    }
+    else
+    {
+        message = [NSString stringWithFormat:@"Synced %lu Fonts", (unsigned long)[fonts count]];
+    }
+    
+    notification.informativeText = message;
     notification.soundName = nil;
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
+#pragma mark NSUserNotificationCenterDelegate
+-(BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
 }
 
 @end
