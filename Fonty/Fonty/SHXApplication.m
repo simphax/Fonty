@@ -11,6 +11,7 @@
 #import "SHXFontManager.h"
 #import "SHXFolderFontCatalog.h"
 #import "NSFileManager+DirectoryLocations.h"
+#import "LaunchAtLoginController.h"
 
 @interface SHXApplication() <SHXIFontManagerDelegate, NSUserNotificationCenterDelegate>
 {
@@ -25,6 +26,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [self setupLaunchAtLogin];
+    
     SHXFolderFontCatalog *local = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
     SHXFolderFontCatalog *remote = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty"]];
 
@@ -33,6 +36,12 @@
     _statusView = [[SHXStatusView alloc] init];
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+}
+
+-(void)setupLaunchAtLogin
+{
+    LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
+    [launchController setLaunchAtLogin:YES];
 }
 
 -(BOOL)isFirstTime

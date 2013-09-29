@@ -19,6 +19,7 @@
 		F44FCB4517F73D5C006DD0BA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB2417F73D5C006DD0BA /* Cocoa.framework */; };
 		F44FCB4D17F73D5C006DD0BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F44FCB4B17F73D5C006DD0BA /* InfoPlist.strings */; };
 		F44FCB5D17F741B7006DD0BA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB5C17F741B7006DD0BA /* Security.framework */; };
+		F48B406117F86B6F00D709C7 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B406017F86B6F00D709C7 /* LaunchAtLoginController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F4C1ACF217F79617006107D3 /* SCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACEE17F79617006107D3 /* SCEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F4C1ACF317F79617006107D3 /* SCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF117F79617006107D3 /* SCEvents.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */; };
@@ -83,6 +84,8 @@
 		F44FCB4A17F73D5C006DD0BA /* FontyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FontyTests-Info.plist"; sourceTree = "<group>"; };
 		F44FCB4C17F73D5C006DD0BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F44FCB5C17F741B7006DD0BA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F48B405F17F86B6F00D709C7 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = Libraries/LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = "<group>"; };
+		F48B406017F86B6F00D709C7 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchAtLoginController.m; path = Libraries/LaunchAtLoginController/LaunchAtLoginController.m; sourceTree = "<group>"; };
 		F4C1ACEC17F79617006107D3 /* SCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCConstants.h; path = Libraries/SCEvents/SCConstants.h; sourceTree = "<group>"; };
 		F4C1ACED17F79617006107D3 /* SCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvent.h; path = Libraries/SCEvents/SCEvent.h; sourceTree = "<group>"; };
 		F4C1ACEE17F79617006107D3 /* SCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvent.m; path = Libraries/SCEvents/SCEvent.m; sourceTree = "<group>"; };
@@ -249,9 +252,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F48B405E17F86B3500D709C7 /* LaunchAtLoginController */ = {
+			isa = PBXGroup;
+			children = (
+				F48B405F17F86B6F00D709C7 /* LaunchAtLoginController.h */,
+				F48B406017F86B6F00D709C7 /* LaunchAtLoginController.m */,
+			);
+			name = LaunchAtLoginController;
+			sourceTree = "<group>";
+		};
 		F4C1ACEA17F795F5006107D3 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				F48B405E17F86B3500D709C7 /* LaunchAtLoginController */,
 				F4C1ACEB17F79605006107D3 /* SCEvents */,
 			);
 			name = "External Libraries";
@@ -429,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4C1ACF317F79617006107D3 /* SCEvents.m in Sources */,
+				F48B406117F86B6F00D709C7 /* LaunchAtLoginController.m in Sources */,
 				F4C1AD6317F7E43A006107D3 /* SHXPopoverViewController.m in Sources */,
 				F4C1AD5917F7DEAD006107D3 /* SHXApplication.m in Sources */,
 				F4C1AD5417F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m in Sources */,
