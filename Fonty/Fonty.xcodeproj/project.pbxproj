@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F449CDAA17F7FDC40029ACE8 /* FontyIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F449CDA917F7FDC40029ACE8 /* FontyIcon.icns */; };
-		F44C926317F76AB6005A5F79 /* SHXDropboxFontCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926217F76AB6005A5F79 /* SHXDropboxFontCatalog.m */; };
 		F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */; };
 		F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926817F76D8E005A5F79 /* SHXFontManager.m */; };
 		F44C926C17F76F82005A5F79 /* SHXFolderFontCatalogTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */; };
@@ -16,14 +15,10 @@
 		F44FCB2F17F73D5C006DD0BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F44FCB2D17F73D5C006DD0BA /* InfoPlist.strings */; };
 		F44FCB3117F73D5C006DD0BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F44FCB3017F73D5C006DD0BA /* main.m */; };
 		F44FCB3517F73D5C006DD0BA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F44FCB3317F73D5C006DD0BA /* Credits.rtf */; };
-		F44FCB3817F73D5C006DD0BA /* SHXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F44FCB3717F73D5C006DD0BA /* SHXAppDelegate.m */; };
-		F44FCB3B17F73D5C006DD0BA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F44FCB3917F73D5C006DD0BA /* MainMenu.xib */; };
 		F44FCB4417F73D5C006DD0BA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB4317F73D5C006DD0BA /* XCTest.framework */; };
 		F44FCB4517F73D5C006DD0BA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB2417F73D5C006DD0BA /* Cocoa.framework */; };
 		F44FCB4D17F73D5C006DD0BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F44FCB4B17F73D5C006DD0BA /* InfoPlist.strings */; };
 		F44FCB5D17F741B7006DD0BA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB5C17F741B7006DD0BA /* Security.framework */; };
-		F44FCB6417F7437C006DD0BA /* DropboxOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */; };
-		F44FCB6617F74396006DD0BA /* DropboxOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */; };
 		F4C1ACF217F79617006107D3 /* SCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACEE17F79617006107D3 /* SCEvent.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F4C1ACF317F79617006107D3 /* SCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF117F79617006107D3 /* SCEvents.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */; };
@@ -60,7 +55,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F44FCB6617F74396006DD0BA /* DropboxOSX.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,8 +63,6 @@
 /* Begin PBXFileReference section */
 		F449CDA917F7FDC40029ACE8 /* FontyIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = FontyIcon.icns; sourceTree = "<group>"; };
 		F44C925E17F75466005A5F79 /* SHXIFontCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXIFontCatalog.h; path = Sync/SHXIFontCatalog.h; sourceTree = "<group>"; };
-		F44C926117F76AB6005A5F79 /* SHXDropboxFontCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXDropboxFontCatalog.h; path = Sync/SHXDropboxFontCatalog.h; sourceTree = "<group>"; };
-		F44C926217F76AB6005A5F79 /* SHXDropboxFontCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXDropboxFontCatalog.m; path = Sync/SHXDropboxFontCatalog.m; sourceTree = "<group>"; };
 		F44C926417F76CF8005A5F79 /* SHXFolderFontCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXFolderFontCatalog.h; path = Sync/SHXFolderFontCatalog.h; sourceTree = "<group>"; };
 		F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFolderFontCatalog.m; path = Sync/SHXFolderFontCatalog.m; sourceTree = "<group>"; };
 		F44C926717F76D8E005A5F79 /* SHXFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXFontManager.h; path = Sync/SHXFontManager.h; sourceTree = "<group>"; };
@@ -86,15 +78,11 @@
 		F44FCB3017F73D5C006DD0BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F44FCB3217F73D5C006DD0BA /* Fonty-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fonty-Prefix.pch"; sourceTree = "<group>"; };
 		F44FCB3417F73D5C006DD0BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		F44FCB3617F73D5C006DD0BA /* SHXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHXAppDelegate.h; sourceTree = "<group>"; };
-		F44FCB3717F73D5C006DD0BA /* SHXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHXAppDelegate.m; sourceTree = "<group>"; };
-		F44FCB3A17F73D5C006DD0BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F44FCB4217F73D5C006DD0BA /* FontyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44FCB4317F73D5C006DD0BA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F44FCB4A17F73D5C006DD0BA /* FontyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FontyTests-Info.plist"; sourceTree = "<group>"; };
 		F44FCB4C17F73D5C006DD0BA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F44FCB5C17F741B7006DD0BA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxOSX.framework; path = ../DropboxOSX.framework; sourceTree = "<group>"; };
 		F4C1ACEC17F79617006107D3 /* SCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCConstants.h; path = Libraries/SCEvents/SCConstants.h; sourceTree = "<group>"; };
 		F4C1ACED17F79617006107D3 /* SCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvent.h; path = Libraries/SCEvents/SCEvent.h; sourceTree = "<group>"; };
 		F4C1ACEE17F79617006107D3 /* SCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvent.m; path = Libraries/SCEvents/SCEvent.m; sourceTree = "<group>"; };
@@ -133,7 +121,6 @@
 			files = (
 				F44FCB2517F73D5C006DD0BA /* Cocoa.framework in Frameworks */,
 				F44FCB5D17F741B7006DD0BA /* Security.framework in Frameworks */,
-				F44FCB6417F7437C006DD0BA /* DropboxOSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,8 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				F44C925E17F75466005A5F79 /* SHXIFontCatalog.h */,
-				F44C926117F76AB6005A5F79 /* SHXDropboxFontCatalog.h */,
-				F44C926217F76AB6005A5F79 /* SHXDropboxFontCatalog.m */,
 				F44C926417F76CF8005A5F79 /* SHXFolderFontCatalog.h */,
 				F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */,
 				F44C926717F76D8E005A5F79 /* SHXFontManager.h */,
@@ -199,7 +184,6 @@
 		F44FCB2317F73D5C006DD0BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F44FCB6317F7437C006DD0BA /* DropboxOSX.framework */,
 				F44FCB5C17F741B7006DD0BA /* Security.framework */,
 				F44FCB2417F73D5C006DD0BA /* Cocoa.framework */,
 				F44FCB4317F73D5C006DD0BA /* XCTest.framework */,
@@ -226,9 +210,6 @@
 				F4C1ACEA17F795F5006107D3 /* External Libraries */,
 				F4C1ACF417F79663006107D3 /* Manual Tests */,
 				F44C925A17F750EC005A5F79 /* Sync */,
-				F44FCB3617F73D5C006DD0BA /* SHXAppDelegate.h */,
-				F44FCB3717F73D5C006DD0BA /* SHXAppDelegate.m */,
-				F44FCB3917F73D5C006DD0BA /* MainMenu.xib */,
 				F4C1AD5A17F7DEE4006107D3 /* Status Bar */,
 				F4C1AD5517F7DE32006107D3 /* Application.xib */,
 				F4C1AD5717F7DEAD006107D3 /* SHXApplication.h */,
@@ -428,7 +409,6 @@
 				F4C1AD5617F7DE32006107D3 /* Application.xib in Resources */,
 				F4C1AD7617F7EF78006107D3 /* logo.png in Resources */,
 				F44FCB3517F73D5C006DD0BA /* Credits.rtf in Resources */,
-				F44FCB3B17F73D5C006DD0BA /* MainMenu.xib in Resources */,
 				F4C1ACF917F7966D006107D3 /* TestApplication.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,11 +429,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4C1ACF317F79617006107D3 /* SCEvents.m in Sources */,
-				F44C926317F76AB6005A5F79 /* SHXDropboxFontCatalog.m in Sources */,
 				F4C1AD6317F7E43A006107D3 /* SHXPopoverViewController.m in Sources */,
 				F4C1AD5917F7DEAD006107D3 /* SHXApplication.m in Sources */,
 				F4C1AD5417F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m in Sources */,
-				F44FCB3817F73D5C006DD0BA /* SHXAppDelegate.m in Sources */,
 				F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */,
 				F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */,
 				F4C1ACF217F79617006107D3 /* SCEvent.m in Sources */,
@@ -498,14 +476,6 @@
 				F44FCB3417F73D5C006DD0BA /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		F44FCB3917F73D5C006DD0BA /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F44FCB3A17F73D5C006DD0BA /* Base */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		F44FCB4B17F73D5C006DD0BA /* InfoPlist.strings */ = {

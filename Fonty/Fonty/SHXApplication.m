@@ -32,7 +32,7 @@
     
     _statusView = [[SHXStatusView alloc] init];
     
-    [[NSNotificationCenter defaultCenter] setDelegate:self];
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 }
 
 -(BOOL)isFirstTime
@@ -107,11 +107,11 @@
     NSString *message;
     if([fonts count] == 1)
     {
-        message = [NSString stringWithFormat:@"Synced %lu Font", (unsigned long)[fonts count]];
+        message = [NSString stringWithFormat:@"Synced %lu Font with iCloud", (unsigned long)[fonts count]];
     }
     else
     {
-        message = [NSString stringWithFormat:@"Synced %lu Fonts", (unsigned long)[fonts count]];
+        message = [NSString stringWithFormat:@"Synced %lu Fonts with iCloud", (unsigned long)[fonts count]];
     }
     
     notification.informativeText = message;
