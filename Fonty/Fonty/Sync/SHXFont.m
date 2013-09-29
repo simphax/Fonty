@@ -17,4 +17,18 @@
     return self;
 }
 
+- (NSUInteger)hash {
+    NSUInteger hash = 0;
+    hash += [[self relativePath] hash];
+    return hash;
+}
+
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[SHXFont class]])
+        return NO;
+    return [[self relativePath] isEqual:[other relativePath]];
+}
+
 @end

@@ -7,20 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHXIFontCatalog.h"
+#import "SHXIFontManager.h"
 
-@protocol SHXFontManagerDelegate <NSObject>
-
--(void) fontSyncingBegin:(id)sender;
--(void) fontSyncingEnd:(id)sender;
--(void) collectionModified:(id)sender;
-
-@end
-
-@interface SHXFontManager : NSObject
+@interface SHXFontManager : NSObject <SHXIFontManager>
 
 -(id) initWithCatalog:(id <SHXIFontCatalog>)local andCatalog:(id <SHXIFontCatalog>)remote;
-
--(NSArray *) activatedFonts;
 
 @end

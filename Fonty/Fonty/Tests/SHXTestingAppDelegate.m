@@ -9,11 +9,13 @@
 #import "SHXTestingAppDelegate.h"
 
 #import "SHXFolderFontCatalog.h"
+#import "SHXFontManager.h"
 
-@interface SHXTestingAppDelegate()
+@interface SHXTestingAppDelegate() <SHXIFontCatalogDelegate>
 {
     @private
     id <SHXIFontCatalog> _folderCatalog;
+    id <SHXIFontManager> _fontManager;
 }
 
 @end
@@ -22,10 +24,22 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    /*
     _folderCatalog = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Fonts"]];
     [_folderCatalog setDelegate:self];
+     */
+    SHXFolderFontCatalog *local = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsLocal"]];
+    SHXFolderFontCatalog *remote = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsRemote"]];
+    
+    _fontManager = [[SHXFontManager alloc] initWithCatalog:local andCatalog:remote];
 }
 
+- (IBAction)didPressSync:(id)sender
+{
+    [_fontManager performManualSync];
+}
+
+#pragma mark SHXIFontCatalogDelegate
 
 -(void)disappearedFonts:(NSArray *)fonts sender:(id)sender
 {

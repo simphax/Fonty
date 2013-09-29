@@ -10,7 +10,7 @@
 #import "SHXIFontCatalog.h"
 #import "SCEventListenerProtocol.h"
 
-@interface SHXFolderFontCatalog : NSObject <SHXIFontCatalog, SCEventListenerProtocol>
+@interface SHXFolderFontCatalog : NSObject <SHXIFontCatalog>
 
 -(id) initWithFolder:(NSString *)path;
 

@@ -23,8 +23,8 @@
 
 -(NSArray *)allFonts;
 
--(void)addFont:(SHXFont *)font;
--(void)deleteFont:(SHXFont *)font;
+-(void)addFonts:(NSArray *)fonts;
+-(void)deleteFonts:(NSArray *)fonts;
 
 @property(nonatomic,assign)id<SHXIFontCatalogDelegate> delegate;
 

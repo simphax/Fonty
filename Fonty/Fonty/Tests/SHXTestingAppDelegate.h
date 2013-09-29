@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SHXIFontCatalog.h"
 
-@interface SHXTestingAppDelegate : NSObject <NSApplicationDelegate,SHXIFontCatalogDelegate>
+@interface SHXTestingAppDelegate : NSObject <NSApplicationDelegate>
+
+- (IBAction)didPressSync:(id)sender;
 
 @property (assign) IBOutlet NSWindow *window;
 

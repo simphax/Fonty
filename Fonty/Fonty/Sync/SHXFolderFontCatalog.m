@@ -9,10 +9,11 @@
 #import "SHXFolderFontCatalog.h"
 #import "SCEvents.h"
 #import "SCEvent.h"
+#import "SHXLocalFont.h"
 
 static NSArray *AcceptedExtensions;
 
-@interface SHXFolderFontCatalog()
+@interface SHXFolderFontCatalog() <SCEventListenerProtocol>
 {
     @private
     NSString *_path;
@@ -91,19 +92,26 @@ static NSArray *AcceptedExtensions;
         if ([AcceptedExtensions containsObject:[aFile pathExtension]])
         {
             // Found Image File
-            [result addObject:aFile];
+            [result addObject:[[SHXLocalFont alloc] initWithBase:_path relativePath:aFile]];
         }
     }
     return [[NSArray alloc] initWithArray:result];//Return immutable array
 }
 
--(void)addFont:(SHXFont *)font
+-(void)addFonts:(NSArray *)fonts
 {
-    
+    for(SHXLocalFont *font in fonts)
+    {
+        NSLog(@"Copy %@ to %@",[font localPath],[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]]);
+        [[NSFileManager defaultManager] copyItemAtPath:[font localPath] toPath:[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]] error:nil];
+    }
 }
 
--(void)deleteFont:(SHXFont *)font
+-(void)deleteFonts:(NSArray *)fonts
 {
-    
+    for(SHXLocalFont *font in fonts)
+    {
+        NSLog(@"Delete %@",[font relativePath]);
+    }
 }
 @end
