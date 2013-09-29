@@ -209,8 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				F4C1AD6517F7E5AF006107D3 /* Assets */,
-				F4C1AD4E17F7D08B006107D3 /* NS Classes */,
-				F4C1ACEA17F795F5006107D3 /* External Libraries */,
+				F4C1ACEA17F795F5006107D3 /* External Code */,
 				F4C1ACF417F79663006107D3 /* Manual Tests */,
 				F44C925A17F750EC005A5F79 /* Sync */,
 				F4C1AD5A17F7DEE4006107D3 /* Status Bar */,
@@ -261,13 +260,14 @@
 			name = LaunchAtLoginController;
 			sourceTree = "<group>";
 		};
-		F4C1ACEA17F795F5006107D3 /* External Libraries */ = {
+		F4C1ACEA17F795F5006107D3 /* External Code */ = {
 			isa = PBXGroup;
 			children = (
+				F4C1AD4E17F7D08B006107D3 /* NS Classes */,
 				F48B405E17F86B3500D709C7 /* LaunchAtLoginController */,
 				F4C1ACEB17F79605006107D3 /* SCEvents */,
 			);
-			name = "External Libraries";
+			name = "External Code";
 			sourceTree = "<group>";
 		};
 		F4C1ACEB17F79605006107D3 /* SCEvents */ = {
