@@ -11,7 +11,7 @@
 #import "SHXFolderFontCatalog.h"
 #import "SHXFontManager.h"
 
-@interface SHXTestingAppDelegate() <SHXIFontCatalogDelegate>
+@interface SHXTestingAppDelegate() <SHXIFontManagerDelegate>
 {
     @private
     id <SHXIFontCatalog> _folderCatalog;
@@ -31,12 +31,12 @@
     SHXFolderFontCatalog *local = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsLocal"]];
     SHXFolderFontCatalog *remote = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsRemote"]];
     
-    _fontManager = [[SHXFontManager alloc] initWithCatalog:local andCatalog:remote];
+    _fontManager = [[SHXFontManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:YES];
 }
 
 - (IBAction)didPressSync:(id)sender
 {
-    [_fontManager performManualSync];
+    [_fontManager performMerge];
 }
 
 #pragma mark SHXIFontCatalogDelegate

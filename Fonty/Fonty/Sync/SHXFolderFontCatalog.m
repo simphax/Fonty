@@ -10,6 +10,7 @@
 #import "SCEvents.h"
 #import "SCEvent.h"
 #import "SHXLocalFont.h"
+#import "NSFileManager+DirectoryLocations.h"
 
 static NSArray *AcceptedExtensions;
 
@@ -19,6 +20,8 @@ static NSArray *AcceptedExtensions;
     NSString *_path;
     SCEvents *_folderEvents;
     NSArray *_previousFileList;
+    BOOL _adding;
+    BOOL _deleting;
 }
 
 @end
@@ -31,6 +34,8 @@ static NSArray *AcceptedExtensions;
     self = [super init];
     
     AcceptedExtensions = [NSArray arrayWithObjects:@"ttf", nil];
+    
+    NSLog(@"Creating folder %@: %hhd",path,[[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil]);
     
     _path = path;
     _previousFileList = [self allFonts];
@@ -60,26 +65,28 @@ static NSArray *AcceptedExtensions;
 {
     NSLog(@"Folder event: %@", event);
     
-    NSArray *newFileList = [self allFonts];
     
-    if(delegate){
-        
-        NSMutableArray *disappeared = [NSMutableArray arrayWithArray:_previousFileList];
-        NSMutableArray *appeared = [NSMutableArray arrayWithArray:newFileList];
-        
-        [disappeared removeObjectsInArray:newFileList];
-        [appeared removeObjectsInArray:_previousFileList];
-        
-        if([disappeared count])
-        {
-            [[self delegate] disappearedFonts:disappeared sender:self];
-        }
-        if([appeared count])
-        {
-            [[self delegate] appearedFonts:appeared sender:self];
+    NSArray *newFileList = [self allFonts];
+    if(!(_deleting || _adding))
+    {
+        if(delegate){
+            
+            NSMutableArray *disappeared = [NSMutableArray arrayWithArray:_previousFileList];
+            NSMutableArray *appeared = [NSMutableArray arrayWithArray:newFileList];
+            
+            [disappeared removeObjectsInArray:newFileList];
+            [appeared removeObjectsInArray:_previousFileList];
+            
+            if([disappeared count])
+            {
+                [[self delegate] disappearedFonts:disappeared sender:self];
+            }
+            if([appeared count])
+            {
+                [[self delegate] appearedFonts:appeared sender:self];
+            }
         }
     }
-    
     _previousFileList = newFileList;
 }
  
@@ -100,29 +107,39 @@ static NSArray *AcceptedExtensions;
 
 -(void)addFonts:(NSArray *)fonts
 {
+    _adding = TRUE;
     for(SHXLocalFont *font in fonts)
     {
         NSLog(@"Copy %@ to %@",[font localPath],[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]]);
         [[NSFileManager defaultManager] copyItemAtPath:[font localPath] toPath:[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]] error:nil];
     }
     
+    _previousFileList = [self allFonts];
     if(delegate)
     {
         [[self delegate] addedFonts:fonts sender:self];
     }
+    _adding = FALSE;
 }
 
 -(void)deleteFonts:(NSArray *)fonts
 {
+    _deleting = TRUE;
+    
     for(SHXLocalFont *font in fonts)
     {
-        NSLog(@"Delete %@",[font relativePath]);
-        [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]] error:nil];
+        NSLog(@"Move to trash %@",[font relativePath]);
+        
+        NSURL* url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]]];
+        
+        [[NSFileManager defaultManager] trashItemAtURL:url resultingItemURL:nil error:nil];
     }
     
+    _previousFileList = [self allFonts];
     if(delegate)
     {
         [[self delegate] deletedFonts:fonts sender:self];
     }
+    _deleting = FALSE;
 }
 @end

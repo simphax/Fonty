@@ -11,6 +11,6 @@
 
 @interface SHXFontManager : NSObject <SHXIFontManager>
 
--(id) initWithCatalog:(id <SHXIFontCatalog>)local andCatalog:(id <SHXIFontCatalog>)remote;
+-(id) initWithCatalog:(id <SHXIFontCatalog>)local andCatalog:(id <SHXIFontCatalog>)remote withDelegate:(id<SHXIFontManagerDelegate>)delegate asFirstTime:(BOOL)first;
 
 @end

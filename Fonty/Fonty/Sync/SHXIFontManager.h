@@ -14,7 +14,8 @@
 
 -(void) fontSyncingBegin:(id)sender;
 -(void) fontSyncingEnd:(id)sender;
--(void) collectionModified:(id)sender;
+-(void) deletedFonts:(NSArray *)fonts sender:(id)sender;
+-(void) addedFonts:(NSArray *)fonts sender:(id)sender;
 
 @end
 
@@ -22,7 +23,8 @@
 
 -(NSArray *) activatedFonts;
 
--(void) performManualSync;
+-(void) performMerge;
+-(void) performHardFetch;
 
 @property(nonatomic,assign)id<SHXIFontManagerDelegate> delegate;
 

@@ -21,16 +21,26 @@
 
 @synthesize delegate;
 
--(id) initWithCatalog:(id <SHXIFontCatalog>)local andCatalog:(id <SHXIFontCatalog>)remote
+-(id) initWithCatalog:(id <SHXIFontCatalog>)local andCatalog:(id <SHXIFontCatalog>)remote withDelegate:(id<SHXIFontManagerDelegate>)delegate asFirstTime:(BOOL)first
 {
     self = [super init];
+    
     _localFontCatalog = local;
     _remoteFontCatalog = remote;
     
     [_localFontCatalog setDelegate:self];
     [_remoteFontCatalog setDelegate:self];
     
-    [self performManualSync];
+    [self setDelegate:delegate];
+    
+    if(first)
+    {
+        [self performMerge];
+    }
+    else
+    {
+        [self performHardFetch];
+    }
     
     return self;
 }
@@ -40,7 +50,7 @@
     return [_localFontCatalog allFonts];
 }
 
--(void) performManualSync
+-(void) performMerge
 {
     if(delegate)
     {
@@ -66,13 +76,53 @@
     }
 }
 
+-(void) performHardFetch
+{
+    if(delegate)
+    {
+        [[self delegate] fontSyncingBegin:self];
+    }
+    
+    NSArray *allLocalFonts = [_localFontCatalog allFonts];
+    NSArray *allRemoteFonts = [_remoteFontCatalog allFonts];
+    NSMutableArray *addLocalList = [[NSMutableArray alloc] initWithArray:[_remoteFontCatalog allFonts]];
+    NSMutableArray *deleteLocalList = [[NSMutableArray alloc] initWithArray:[_localFontCatalog allFonts]];
+    
+    [addLocalList removeObjectsInArray:allLocalFonts];
+    [deleteLocalList removeObjectsInArray:allRemoteFonts];
+    
+    NSLog(@"Add these to local: %@",addLocalList);
+    NSLog(@"Delete these from local: %@",deleteLocalList);
+    [_localFontCatalog addFonts:addLocalList];
+    [_localFontCatalog deleteFonts:deleteLocalList];
+    
+    if(delegate)
+    {
+        [[self delegate] fontSyncingEnd:self];
+    }
+}
+
 #pragma mark SHXIFontCatalogDelegate
 -(void)deletedFonts:(NSArray *)fonts sender:(id)sender
 {
+    if(sender == _localFontCatalog)
+    {
+        if(delegate && [fonts count])
+        {
+            [[self delegate] deletedFonts:fonts sender:self];
+        }
+    }
     NSLog(@"Deleted fonts %@",fonts);
 }
 -(void)addedFonts:(NSArray *)fonts sender:(id)sender
 {
+    if(sender == _localFontCatalog)
+    {
+        if(delegate && [fonts count])
+        {
+            [[self delegate] addedFonts:fonts sender:self];
+        }
+    }
     NSLog(@"Added fonts %@",fonts);
 }
 
