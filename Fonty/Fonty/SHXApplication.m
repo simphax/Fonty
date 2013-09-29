@@ -97,7 +97,7 @@
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
--(void) addedFonts:(NSArray *)fonts sender:(id)sender
+-(void) changedFonts:(NSArray *)fonts sender:(id)sender
 {
     /*
     if([[[NSUserNotificationCenter defaultUserNotificationCenter] deliveredNotifications] count])

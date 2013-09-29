@@ -67,8 +67,8 @@
     
     NSLog(@"Add these to local: %@",addLocalList);
     NSLog(@"Add these to remote: %@",addRemoteList);
-    [_localFontCatalog addFonts:addLocalList];
-    [_remoteFontCatalog addFonts:addRemoteList];
+    [_localFontCatalog updateFonts:addLocalList];
+    [_remoteFontCatalog updateFonts:addRemoteList];
     
     if(delegate)
     {
@@ -93,7 +93,7 @@
     
     NSLog(@"Add these to local: %@",addLocalList);
     NSLog(@"Delete these from local: %@",deleteLocalList);
-    [_localFontCatalog addFonts:addLocalList];
+    [_localFontCatalog updateFonts:addLocalList];
     [_localFontCatalog deleteFonts:deleteLocalList];
     
     if(delegate)
@@ -114,16 +114,16 @@
     }
     NSLog(@"Deleted fonts %@",fonts);
 }
--(void)addedFonts:(NSArray *)fonts sender:(id)sender
+-(void)updatedFonts:(NSArray *)fonts sender:(id)sender
 {
     if(sender == _localFontCatalog)
     {
         if(delegate && [fonts count])
         {
-            [[self delegate] addedFonts:fonts sender:self];
+            [[self delegate] changedFonts:fonts sender:self];
         }
     }
-    NSLog(@"Added fonts %@",fonts);
+    NSLog(@"Updated fonts %@",fonts);
 }
 
 -(void)disappearedFonts:(NSArray *)fonts sender:(id)sender
@@ -132,11 +132,11 @@
     
     [toBeSynced deleteFonts:fonts];
 }
--(void)appearedFonts:(NSArray *)fonts sender:(id)sender
+-(void)changedFonts:(NSArray *)fonts sender:(id)sender
 {
     id <SHXIFontCatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
     
-    [toBeSynced addFonts:fonts];
+    [toBeSynced updateFonts:fonts];
 }
 
 @end

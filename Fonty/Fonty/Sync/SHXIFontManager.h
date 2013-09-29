@@ -15,7 +15,7 @@
 -(void) fontSyncingBegin:(id)sender;
 -(void) fontSyncingEnd:(id)sender;
 -(void) deletedFonts:(NSArray *)fonts sender:(id)sender;
--(void) addedFonts:(NSArray *)fonts sender:(id)sender;
+-(void) changedFonts:(NSArray *)fonts sender:(id)sender;
 
 @end
 

@@ -20,4 +20,31 @@
     return self;
 }
 
+- (NSUInteger)hash {
+    NSUInteger hash = 0;
+    hash += [[self relativePath] hash];
+    
+    hash += [[self getFileSize] hash];
+    
+    return hash;
+}
+
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[SHXLocalFont class]])
+        return NO;
+    return [[self relativePath] isEqual:[other relativePath]] && [[self getFileSize] isEqual:[other getFileSize]];
+}
+
+- (NSNumber *)getFileSize
+{
+    NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[self localPath] error: NULL];
+    return [NSNumber numberWithUnsignedLongLong:(unsigned long long)[attrs fileSize]];
+}
+
+- (NSString *)description {
+    return [self localPath];
+}
+
 @end
