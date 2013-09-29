@@ -7,8 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHXIFontCatalog.h"
 
-@interface SHXDropboxFontCatalog : NSObject <SHXIFontCatalog>
+#import <DropboxOSX/DropboxOSX.h>
+#import "SHXFolderFontCatalog.h"
+
+@interface SHXDropboxFontCatalog : SHXFolderFontCatalog
+
+-(id) initWithRestClient:(DBRestClient *)restClient;
 
 @end

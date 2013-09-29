@@ -105,6 +105,11 @@ static NSArray *AcceptedExtensions;
         NSLog(@"Copy %@ to %@",[font localPath],[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]]);
         [[NSFileManager defaultManager] copyItemAtPath:[font localPath] toPath:[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]] error:nil];
     }
+    
+    if(delegate)
+    {
+        [[self delegate] addedFonts:fonts sender:self];
+    }
 }
 
 -(void)deleteFonts:(NSArray *)fonts
@@ -112,6 +117,12 @@ static NSArray *AcceptedExtensions;
     for(SHXLocalFont *font in fonts)
     {
         NSLog(@"Delete %@",[font relativePath]);
+        [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]] error:nil];
+    }
+    
+    if(delegate)
+    {
+        [[self delegate] deletedFonts:fonts sender:self];
     }
 }
 @end

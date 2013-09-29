@@ -30,6 +30,17 @@
 		F4C1ACF917F7966D006107D3 /* TestApplication.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C1ACF717F7966D006107D3 /* TestApplication.xib */; };
 		F4C1ACFC17F79D5B006107D3 /* SHXFont.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACFB17F79D5B006107D3 /* SHXFont.m */; };
 		F4C1AD0217F7B87C006107D3 /* SHXLocalFont.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1AD0117F7B87C006107D3 /* SHXLocalFont.m */; };
+		F4C1AD5417F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1AD5317F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m */; };
+		F4C1AD5617F7DE32006107D3 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C1AD5517F7DE32006107D3 /* Application.xib */; };
+		F4C1AD5917F7DEAD006107D3 /* SHXApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1AD5817F7DEAD006107D3 /* SHXApplication.m */; };
+		F4C1AD5D17F7E0B2006107D3 /* SHXStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1AD5C17F7E0B2006107D3 /* SHXStatusView.m */; };
+		F4C1AD6317F7E43A006107D3 /* SHXPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1AD6117F7E43A006107D3 /* SHXPopoverViewController.m */; };
+		F4C1AD6417F7E43A006107D3 /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C1AD6217F7E43A006107D3 /* PopoverView.xib */; };
+		F4C1AD7117F7E8BE006107D3 /* statusbar-black.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C1AD6F17F7E8BE006107D3 /* statusbar-black.png */; };
+		F4C1AD7217F7E8BE006107D3 /* statusbar-white.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C1AD7017F7E8BE006107D3 /* statusbar-white.png */; };
+		F4C1AD7617F7EF78006107D3 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C1AD7317F7EF78006107D3 /* logo.png */; };
+		F4C1AD7717F7EF78006107D3 /* statusbar-black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C1AD7417F7EF78006107D3 /* statusbar-black@2x.png */; };
+		F4C1AD7817F7EF78006107D3 /* statusbar-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4C1AD7517F7EF78006107D3 /* statusbar-white@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +109,21 @@
 		F4C1ACFD17F7B2D7006107D3 /* SHXIFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXIFontManager.h; path = Sync/SHXIFontManager.h; sourceTree = "<group>"; };
 		F4C1AD0017F7B87C006107D3 /* SHXLocalFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXLocalFont.h; path = Sync/SHXLocalFont.h; sourceTree = "<group>"; };
 		F4C1AD0117F7B87C006107D3 /* SHXLocalFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXLocalFont.m; path = Sync/SHXLocalFont.m; sourceTree = "<group>"; };
+		F4C1AD5217F7D0C4006107D3 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "NSClasses/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
+		F4C1AD5317F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "NSClasses/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
+		F4C1AD5517F7DE32006107D3 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
+		F4C1AD5717F7DEAD006107D3 /* SHXApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHXApplication.h; sourceTree = "<group>"; };
+		F4C1AD5817F7DEAD006107D3 /* SHXApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHXApplication.m; sourceTree = "<group>"; };
+		F4C1AD5B17F7E0B2006107D3 /* SHXStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXStatusView.h; path = Menubar/SHXStatusView.h; sourceTree = "<group>"; };
+		F4C1AD5C17F7E0B2006107D3 /* SHXStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXStatusView.m; path = Menubar/SHXStatusView.m; sourceTree = "<group>"; };
+		F4C1AD6017F7E43A006107D3 /* SHXPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXPopoverViewController.h; path = Menubar/SHXPopoverViewController.h; sourceTree = "<group>"; };
+		F4C1AD6117F7E43A006107D3 /* SHXPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXPopoverViewController.m; path = Menubar/SHXPopoverViewController.m; sourceTree = "<group>"; };
+		F4C1AD6217F7E43A006107D3 /* PopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PopoverView.xib; path = Menubar/PopoverView.xib; sourceTree = "<group>"; };
+		F4C1AD6F17F7E8BE006107D3 /* statusbar-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "statusbar-black.png"; path = "Assets/Images/statusbar-black.png"; sourceTree = "<group>"; };
+		F4C1AD7017F7E8BE006107D3 /* statusbar-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "statusbar-white.png"; path = "Assets/Images/statusbar-white.png"; sourceTree = "<group>"; };
+		F4C1AD7317F7EF78006107D3 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Assets/Images/logo.png; sourceTree = "<group>"; };
+		F4C1AD7417F7EF78006107D3 /* statusbar-black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "statusbar-black@2x.png"; path = "Assets/Images/statusbar-black@2x.png"; sourceTree = "<group>"; };
+		F4C1AD7517F7EF78006107D3 /* statusbar-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "statusbar-white@2x.png"; path = "Assets/Images/statusbar-white@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,13 +220,19 @@
 		F44FCB2A17F73D5C006DD0BA /* Fonty */ = {
 			isa = PBXGroup;
 			children = (
+				F4C1AD6517F7E5AF006107D3 /* Assets */,
+				F4C1AD4E17F7D08B006107D3 /* NS Classes */,
 				F4C1ACEA17F795F5006107D3 /* External Libraries */,
-				F4C1ACF417F79663006107D3 /* Tests */,
+				F4C1ACF417F79663006107D3 /* Manual Tests */,
 				F44C925A17F750EC005A5F79 /* Sync */,
 				F44FCB3617F73D5C006DD0BA /* SHXAppDelegate.h */,
 				F44FCB3717F73D5C006DD0BA /* SHXAppDelegate.m */,
 				F44FCB3917F73D5C006DD0BA /* MainMenu.xib */,
 				F44FCB3C17F73D5C006DD0BA /* Images.xcassets */,
+				F4C1AD5A17F7DEE4006107D3 /* Status Bar */,
+				F4C1AD5517F7DE32006107D3 /* Application.xib */,
+				F4C1AD5717F7DEAD006107D3 /* SHXApplication.h */,
+				F4C1AD5817F7DEAD006107D3 /* SHXApplication.m */,
 				F44FCB2B17F73D5C006DD0BA /* Supporting Files */,
 			);
 			path = Fonty;
@@ -257,14 +289,55 @@
 			name = SCEvents;
 			sourceTree = "<group>";
 		};
-		F4C1ACF417F79663006107D3 /* Tests */ = {
+		F4C1ACF417F79663006107D3 /* Manual Tests */ = {
 			isa = PBXGroup;
 			children = (
 				F4C1ACF517F7966D006107D3 /* SHXTestingAppDelegate.h */,
 				F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */,
 				F4C1ACF717F7966D006107D3 /* TestApplication.xib */,
 			);
-			name = Tests;
+			name = "Manual Tests";
+			sourceTree = "<group>";
+		};
+		F4C1AD4E17F7D08B006107D3 /* NS Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F4C1AD5217F7D0C4006107D3 /* NSFileManager+DirectoryLocations.h */,
+				F4C1AD5317F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m */,
+			);
+			name = "NS Classes";
+			sourceTree = "<group>";
+		};
+		F4C1AD5A17F7DEE4006107D3 /* Status Bar */ = {
+			isa = PBXGroup;
+			children = (
+				F4C1AD5B17F7E0B2006107D3 /* SHXStatusView.h */,
+				F4C1AD5C17F7E0B2006107D3 /* SHXStatusView.m */,
+				F4C1AD6017F7E43A006107D3 /* SHXPopoverViewController.h */,
+				F4C1AD6117F7E43A006107D3 /* SHXPopoverViewController.m */,
+				F4C1AD6217F7E43A006107D3 /* PopoverView.xib */,
+			);
+			name = "Status Bar";
+			sourceTree = "<group>";
+		};
+		F4C1AD6517F7E5AF006107D3 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F4C1AD6617F7E5B9006107D3 /* Images */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		F4C1AD6617F7E5B9006107D3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F4C1AD7317F7EF78006107D3 /* logo.png */,
+				F4C1AD7417F7EF78006107D3 /* statusbar-black@2x.png */,
+				F4C1AD7517F7EF78006107D3 /* statusbar-white@2x.png */,
+				F4C1AD6F17F7E8BE006107D3 /* statusbar-black.png */,
+				F4C1AD7017F7E8BE006107D3 /* statusbar-white.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,8 +418,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4C1AD7217F7E8BE006107D3 /* statusbar-white.png in Resources */,
+				F4C1AD7717F7EF78006107D3 /* statusbar-black@2x.png in Resources */,
 				F44FCB2F17F73D5C006DD0BA /* InfoPlist.strings in Resources */,
+				F4C1AD7117F7E8BE006107D3 /* statusbar-black.png in Resources */,
+				F4C1AD6417F7E43A006107D3 /* PopoverView.xib in Resources */,
 				F44FCB3D17F73D5C006DD0BA /* Images.xcassets in Resources */,
+				F4C1AD7817F7EF78006107D3 /* statusbar-white@2x.png in Resources */,
+				F4C1AD5617F7DE32006107D3 /* Application.xib in Resources */,
+				F4C1AD7617F7EF78006107D3 /* logo.png in Resources */,
 				F44FCB3517F73D5C006DD0BA /* Credits.rtf in Resources */,
 				F44FCB3B17F73D5C006DD0BA /* MainMenu.xib in Resources */,
 				F4C1ACF917F7966D006107D3 /* TestApplication.xib in Resources */,
@@ -370,6 +450,9 @@
 			files = (
 				F4C1ACF317F79617006107D3 /* SCEvents.m in Sources */,
 				F44C926317F76AB6005A5F79 /* SHXDropboxFontCatalog.m in Sources */,
+				F4C1AD6317F7E43A006107D3 /* SHXPopoverViewController.m in Sources */,
+				F4C1AD5917F7DEAD006107D3 /* SHXApplication.m in Sources */,
+				F4C1AD5417F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m in Sources */,
 				F44FCB3817F73D5C006DD0BA /* SHXAppDelegate.m in Sources */,
 				F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */,
 				F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */,
@@ -378,6 +461,7 @@
 				F4C1ACFC17F79D5B006107D3 /* SHXFont.m in Sources */,
 				F44FCB3117F73D5C006DD0BA /* main.m in Sources */,
 				F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */,
+				F4C1AD5D17F7E0B2006107D3 /* SHXStatusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

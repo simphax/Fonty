@@ -27,6 +27,9 @@
     _localFontCatalog = local;
     _remoteFontCatalog = remote;
     
+    [_localFontCatalog setDelegate:self];
+    [_remoteFontCatalog setDelegate:self];
+    
     [self performManualSync];
     
     return self;
@@ -66,20 +69,24 @@
 #pragma mark SHXIFontCatalogDelegate
 -(void)deletedFonts:(NSArray *)fonts sender:(id)sender
 {
-    
+    NSLog(@"Deleted fonts %@",fonts);
 }
 -(void)addedFonts:(NSArray *)fonts sender:(id)sender
 {
-    
+    NSLog(@"Added fonts %@",fonts);
 }
 
 -(void)disappearedFonts:(NSArray *)fonts sender:(id)sender
 {
+    id <SHXIFontCatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
     
+    [toBeSynced deleteFonts:fonts];
 }
 -(void)appearedFonts:(NSArray *)fonts sender:(id)sender
 {
+    id <SHXIFontCatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
     
+    [toBeSynced addFonts:fonts];
 }
 
 @end
