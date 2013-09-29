@@ -12,6 +12,16 @@
 
 static NSArray *AcceptedExtensions;
 
+@interface SHXFolderFontCatalog()
+{
+    @private
+    NSString *_path;
+    SCEvents *_folderEvents;
+    NSArray *_previousFileList;
+}
+
+@end
+
 @implementation SHXFolderFontCatalog
 
 @synthesize delegate;
@@ -22,6 +32,7 @@ static NSArray *AcceptedExtensions;
     AcceptedExtensions = [NSArray arrayWithObjects:@"ttf", nil];
     
     _path = path;
+    _previousFileList = [self allFonts];
     
     [self setupFolderEventListenerOnPath:_path];
     
@@ -48,9 +59,27 @@ static NSArray *AcceptedExtensions;
 {
     NSLog(@"Folder event: %@", event);
     
+    NSArray *newFileList = [self allFonts];
+    
     if(delegate){
-        [[self delegate] collectionModified:self];
+        
+        NSMutableArray *disappeared = [NSMutableArray arrayWithArray:_previousFileList];
+        NSMutableArray *appeared = [NSMutableArray arrayWithArray:newFileList];
+        
+        [disappeared removeObjectsInArray:newFileList];
+        [appeared removeObjectsInArray:_previousFileList];
+        
+        if([disappeared count])
+        {
+            [[self delegate] disappearedFonts:disappeared sender:self];
+        }
+        if([appeared count])
+        {
+            [[self delegate] appearedFonts:appeared sender:self];
+        }
     }
+    
+    _previousFileList = newFileList;
 }
  
 #pragma mark SHXIFontCatalog
@@ -65,7 +94,16 @@ static NSArray *AcceptedExtensions;
             [result addObject:aFile];
         }
     }
-    return result;
+    return [[NSArray alloc] initWithArray:result];//Return immutable array
 }
 
+-(void)addFont:(SHXFont *)font
+{
+    
+}
+
+-(void)deleteFont:(SHXFont *)font
+{
+    
+}
 @end

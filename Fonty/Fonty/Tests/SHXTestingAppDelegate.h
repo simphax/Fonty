@@ -10,13 +10,7 @@
 #import "SHXIFontCatalog.h"
 
 @interface SHXTestingAppDelegate : NSObject <NSApplicationDelegate,SHXIFontCatalogDelegate>
-{
-    @private
-    id <SHXIFontCatalog> _folderCatalog;
-}
 
 @property (assign) IBOutlet NSWindow *window;
-
-
 
 @end

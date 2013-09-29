@@ -10,6 +10,14 @@
 
 #import "SHXFolderFontCatalog.h"
 
+@interface SHXTestingAppDelegate()
+{
+    @private
+    id <SHXIFontCatalog> _folderCatalog;
+}
+
+@end
+
 @implementation SHXTestingAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -18,9 +26,16 @@
     [_folderCatalog setDelegate:self];
 }
 
--(void)collectionModified:(id)sender
+
+-(void)disappearedFonts:(NSArray *)fonts sender:(id)sender
 {
-    NSLog(@"Collection modified, sender: %@",sender);
+    NSLog(@"Disappearing fonts: %@",fonts);
+    NSLog(@"All items: %@",[_folderCatalog allFonts]);
+}
+
+-(void)appearedFonts:(NSArray *)fonts sender:(id)sender
+{
+    NSLog(@"Appearing fonts: %@",fonts);
     NSLog(@"All items: %@",[_folderCatalog allFonts]);
 }
 

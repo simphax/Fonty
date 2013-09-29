@@ -28,6 +28,7 @@
 		F4C1ACF317F79617006107D3 /* SCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF117F79617006107D3 /* SCEvents.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */; };
 		F4C1ACF917F7966D006107D3 /* TestApplication.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C1ACF717F7966D006107D3 /* TestApplication.xib */; };
+		F4C1ACFC17F79D5B006107D3 /* SHXFont.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACFB17F79D5B006107D3 /* SHXFont.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		F4C1ACF517F7966D006107D3 /* SHXTestingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXTestingAppDelegate.h; path = Tests/SHXTestingAppDelegate.h; sourceTree = "<group>"; };
 		F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXTestingAppDelegate.m; path = Tests/SHXTestingAppDelegate.m; sourceTree = "<group>"; };
 		F4C1ACF717F7966D006107D3 /* TestApplication.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestApplication.xib; path = Tests/TestApplication.xib; sourceTree = "<group>"; };
+		F4C1ACFA17F79D5A006107D3 /* SHXFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXFont.h; path = Sync/SHXFont.h; sourceTree = "<group>"; };
+		F4C1ACFB17F79D5B006107D3 /* SHXFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFont.m; path = Sync/SHXFont.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,8 @@
 				F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */,
 				F44C926717F76D8E005A5F79 /* SHXFontManager.h */,
 				F44C926817F76D8E005A5F79 /* SHXFontManager.m */,
+				F4C1ACFA17F79D5A006107D3 /* SHXFont.h */,
+				F4C1ACFB17F79D5B006107D3 /* SHXFont.m */,
 			);
 			name = Sync;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */,
 				F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */,
 				F4C1ACF217F79617006107D3 /* SCEvent.m in Sources */,
+				F4C1ACFC17F79D5B006107D3 /* SHXFont.m in Sources */,
 				F44FCB3117F73D5C006DD0BA /* main.m in Sources */,
 				F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */,
 			);
