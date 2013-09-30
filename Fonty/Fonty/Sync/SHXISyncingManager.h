@@ -12,16 +12,16 @@
 
 @protocol SHXISyncingManagerDelegate <NSObject>
 
--(void) fontSyncingBegin:(id)sender;
--(void) fontSyncingEnd:(id)sender;
--(void) removedFonts:(NSArray *)fonts sender:(id)sender;
--(void) changedFonts:(NSArray *)fonts sender:(id)sender;
+-(void) fileSyncingBegin:(id)sender;
+-(void) fileSyncingEnd:(id)sender;
+-(void) removedFiles:(NSArray *)files sender:(id)sender;
+-(void) changedFiles:(NSArray *)files sender:(id)sender;
 
 @end
 
 @protocol SHXISyncingManager <NSObject>
 
--(NSArray *) activatedFonts;
+-(NSArray *) activatedFiles;
 
 -(void) performMergeWith:(id <SHXICatalog>)fromCatalog and:(id <SHXICatalog>)toCatalog;
 -(void) performHardFetchFrom:(id <SHXICatalog>)fromCatalog to:(id <SHXICatalog>)toCatalog;

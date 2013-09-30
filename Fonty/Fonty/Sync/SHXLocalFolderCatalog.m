@@ -41,7 +41,7 @@
     
     _fileManager = [[NSFileManager alloc] init];
     
-    _previousFileList = [self allFonts];
+    _previousFileList = [self allFiles];
     
     [self setupFolderEventListenerOnPath:_path];
     
@@ -86,7 +86,7 @@
 {
     @synchronized([SHXSharedLock sharedSyncLock])
     {
-        NSArray *newFileList = [self allFonts];
+        NSArray *newFileList = [self allFiles];
         NSLog(@"Path %@ changed",_path);
         if(_delegate){
             
@@ -95,24 +95,24 @@
             
             [changed removeObjectsInArray:_previousFileList];
             
-            for(SHXLocalFile *font in [disappeared copy])
+            for(SHXLocalFile *file in [disappeared copy])
             {
                 for(SHXLocalFile *current in newFileList)
                 {
-                    if([[current relativePath] isEqual:[font relativePath]])
+                    if([[current relativePath] isEqual:[file relativePath]])
                     {
-                        [disappeared removeObject:font];
+                        [disappeared removeObject:file];
                     }
                 }
             }
             
             if([changed count])
             {
-                [[self delegate] changedFonts:changed sender:self];
+                [[self delegate] changedFiles:changed sender:self];
             }
             if([disappeared count])
             {
-                [[self delegate] disappearedFonts:disappeared sender:self];
+                [[self delegate] disappearedFiles:disappeared sender:self];
             }
         }
         _previousFileList = newFileList;
@@ -121,7 +121,7 @@
 
 #pragma mark SHXICatalog
 
--(NSArray *)allFonts
+-(NSArray *)allFiles
 {
     NSArray *allFiles = [_fileManager contentsOfDirectoryAtPath:_path error:nil];
     NSMutableArray *result = [[NSMutableArray alloc] init];
@@ -137,33 +137,33 @@
     return result;
 }
 
--(BOOL)updateFont:(SHXFile *)font
+-(BOOL)updateFile:(SHXFile *)file
 {
-    NSNumber *lock = [NSNumber numberWithUnsignedInteger:[font relativePath].hash]; //NSNumber are singeltons for equal values
+    NSNumber *lock = [NSNumber numberWithUnsignedInteger:[file relativePath].hash]; //NSNumber are singeltons for equal values
     @synchronized(lock)
     {
         _updating = TRUE;
-        SHXLocalFile *localFont = (SHXLocalFile *)font;
-        NSLog(@"Copy %@ to %@",[localFont localPath],[self myPathWithFile:[font relativePath]]);
-        [_fileManager removeItemAtPath:[self myPathWithFile:[font relativePath]] error:nil];
-        BOOL result = [_fileManager copyItemAtPath:[localFont localPath] toPath:[self myPathWithFile:[font relativePath]] error:nil];
-        _previousFileList = [self allFonts];
+        SHXLocalFile *localFile = (SHXLocalFile *)file;
+        NSLog(@"Copy %@ to %@",[localFile localPath],[self myPathWithFile:[file relativePath]]);
+        BOOL rem = [_fileManager removeItemAtPath:[self myPathWithFile:[file relativePath]] error:nil];
+        BOOL result = [_fileManager copyItemAtPath:[localFile localPath] toPath:[self myPathWithFile:[file relativePath]] error:nil];
+        _previousFileList = [self allFiles];
         _updating = FALSE;
         return result;
     }
 }
 
--(BOOL)deleteFont:(SHXFile *)font
+-(BOOL)deleteFile:(SHXFile *)file
 {
-    NSNumber *lock = [NSNumber numberWithUnsignedInteger:[font relativePath].hash];
+    NSNumber *lock = [NSNumber numberWithUnsignedInteger:[file relativePath].hash];
     @synchronized(lock)
     {
         _deleting = TRUE;
-        SHXLocalFile *localFont = (SHXLocalFile *)font;
-        NSLog(@"Move to trash %@",[localFont localPath]);
-        NSURL* url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]]];
+        SHXLocalFile *localFile = (SHXLocalFile *)file;
+        NSLog(@"Move to trash %@",[localFile localPath]);
+        NSURL* url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",_path,[file relativePath]]];
         BOOL result = [_fileManager trashItemAtURL:url resultingItemURL:nil error:nil];
-        _previousFileList = [self allFonts];
+        _previousFileList = [self allFiles];
         _deleting = FALSE;
         return result;
     }

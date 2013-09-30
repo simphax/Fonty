@@ -1,5 +1,5 @@
 //
-//  SHXIFontDB.h
+//  SHXIFileDB.h
 //  Fonty
 //
 //  Created by Simon on 2013-09-28.
@@ -11,17 +11,17 @@
 
 @protocol SHXICatalogDelegate <NSObject>
 
--(void)disappearedFonts:(NSArray *)fonts sender:(id)sender;
--(void)changedFonts:(NSArray *)fonts sender:(id)sender;
+-(void)disappearedFiles:(NSArray *)files sender:(id)sender;
+-(void)changedFiles:(NSArray *)files sender:(id)sender;
 
 @end
 
 @protocol SHXICatalog <NSObject>
 
--(NSArray *)allFonts;
+-(NSArray *)allFiles;
 
--(BOOL)updateFont:(SHXFile *)font;
--(BOOL)deleteFont:(SHXFile *)font;
+-(BOOL)updateFile:(SHXFile *)file;
+-(BOOL)deleteFile:(SHXFile *)file;
 
 @property(nonatomic,assign)id<SHXICatalogDelegate> delegate;
 

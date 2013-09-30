@@ -17,8 +17,8 @@
 {
     @private
     SHXStatusView *_statusView;
-    id <SHXISyncingManager> _fontManager;
-    //unsigned long _totalAddedFonts;
+    id <SHXISyncingManager> _fileManager;
+    //unsigned long _totalAddedFiles;
 }
 @end
 
@@ -31,7 +31,7 @@
     SHXLocalFolderCatalog *local = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
     SHXLocalFolderCatalog *remote = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty"]];
 
-    _fontManager = [[SHXSyncingManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:[self isFirstTime]];
+    _fileManager = [[SHXSyncingManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:[self isFirstTime]];
     
     _statusView = [[SHXStatusView alloc] init];
     
@@ -66,29 +66,29 @@
 
 #pragma mark SHXISyncingManagerDelegate
 
--(void) fontSyncingBegin:(id)sender
+-(void) fileSyncingBegin:(id)sender
 {
     
 }
 
--(void) fontSyncingEnd:(id)sender
+-(void) fileSyncingEnd:(id)sender
 {
     
 }
 
--(void) removedFonts:(NSArray *)fonts sender:(id)sender
+-(void) removedFiles:(NSArray *)files sender:(id)sender
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"Fonty";
     
     NSString *message;
-    if([fonts count] == 1)
+    if([files count] == 1)
     {
-        message = [NSString stringWithFormat:@"Moved %lu Font to the Trash", (unsigned long)[fonts count]];
+        message = [NSString stringWithFormat:@"Moved %lu File to the Trash", (unsigned long)[files count]];
     }
     else
     {
-        message = [NSString stringWithFormat:@"Moved %lu Fonts to the Trash", (unsigned long)[fonts count]];
+        message = [NSString stringWithFormat:@"Moved %lu Files to the Trash", (unsigned long)[files count]];
     }
     
     notification.informativeText = message;
@@ -97,30 +97,30 @@
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
--(void) changedFonts:(NSArray *)fonts sender:(id)sender
+-(void) changedFiles:(NSArray *)files sender:(id)sender
 {
     /*
     if([[[NSUserNotificationCenter defaultUserNotificationCenter] deliveredNotifications] count])
     {
-        _totalAddedFonts += (unsigned long)[fonts count];
+        _totalAddedFiles += (unsigned long)[files count];
     }
     else
     {
-        _totalAddedFonts = 0;
-        _totalAddedFonts += (unsigned long)[fonts count];
+        _totalAddedFiles = 0;
+        _totalAddedFiles += (unsigned long)[files count];
     }
      */
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"Fonty";
     
     NSString *message;
-    if([fonts count] == 1)
+    if([files count] == 1)
     {
-        message = [NSString stringWithFormat:@"Synced %lu Font with iCloud", (unsigned long)[fonts count]];
+        message = [NSString stringWithFormat:@"Synced %lu File with iCloud", (unsigned long)[files count]];
     }
     else
     {
-        message = [NSString stringWithFormat:@"Synced %lu Fonts with iCloud", (unsigned long)[fonts count]];
+        message = [NSString stringWithFormat:@"Synced %lu Files with iCloud", (unsigned long)[files count]];
     }
     
     notification.informativeText = message;

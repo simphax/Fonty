@@ -15,8 +15,8 @@
 @interface SHXSyncingManager() <SHXICatalogDelegate>
 {
     @private
-    id <SHXICatalog> _localFontCatalog;
-    id <SHXICatalog> _remoteFontCatalog;
+    id <SHXICatalog> _localFileCatalog;
+    id <SHXICatalog> _remoteFileCatalog;
 }
 
 @end
@@ -31,72 +31,72 @@
     
     [self setDelegate:delegate];
     
-    _localFontCatalog = local;
-    _remoteFontCatalog = remote;
+    _localFileCatalog = local;
+    _remoteFileCatalog = remote;
     
     if(first)
     {
-        [self performMergeWith:_remoteFontCatalog and:_localFontCatalog];
+        [self performMergeWith:_remoteFileCatalog and:_localFileCatalog];
     }
     else
     {
-        [self performHardFetchFrom:_remoteFontCatalog to:_localFontCatalog];
+        [self performHardFetchFrom:_remoteFileCatalog to:_localFileCatalog];
     }
     
-    [_localFontCatalog setDelegate:self];
-    [_remoteFontCatalog setDelegate:self];
+    [_localFileCatalog setDelegate:self];
+    [_remoteFileCatalog setDelegate:self];
     
     return self;
 }
 
--(NSArray *) activatedFonts
+-(NSArray *) activatedFiles
 {
-    return [_localFontCatalog allFonts];
+    return [_localFileCatalog allFiles];
 }
 
 -(void) performMergeWith:(id <SHXICatalog>)fromCatalog and:(id <SHXICatalog>)toCatalog
 {
     if(_delegate)
     {
-        [[self delegate] fontSyncingBegin:self];
+        [[self delegate] fileSyncingBegin:self];
     }
     
-    NSArray *allLocalFonts = [fromCatalog allFonts];
-    NSArray *allRemoteFonts = [toCatalog allFonts];
-    NSMutableArray *addLocalList = [[NSMutableArray alloc] initWithArray:[toCatalog allFonts]];
-    NSMutableArray *addRemoteList = [[NSMutableArray alloc] initWithArray:[fromCatalog allFonts]];
+    NSArray *allLocalFiles = [fromCatalog allFiles];
+    NSArray *allRemoteFiles = [toCatalog allFiles];
+    NSMutableArray *addLocalList = [[NSMutableArray alloc] initWithArray:[toCatalog allFiles]];
+    NSMutableArray *addRemoteList = [[NSMutableArray alloc] initWithArray:[fromCatalog allFiles]];
     
-    [addLocalList removeObjectsInArray:allLocalFonts];
-    [addRemoteList removeObjectsInArray:allRemoteFonts];
+    [addLocalList removeObjectsInArray:allLocalFiles];
+    [addRemoteList removeObjectsInArray:allRemoteFiles];
     
     NSLog(@"Add these to local: %@",addLocalList);
     NSLog(@"Add these to remote: %@",addRemoteList);
     if([addLocalList count])
     {
         NSLog(@"Add to %@: %@",fromCatalog,addLocalList);
-        for(SHXFile *font in addLocalList)
+        for(SHXFile *file in addLocalList)
         {
-            if(![fromCatalog updateFont:font])
+            if(![fromCatalog updateFile:file])
             {
-                NSLog(@"Could not copy font %@",font);
+                NSLog(@"Could not copy file %@",file);
             }
         }
     }
     if([addRemoteList count])
     {
         NSLog(@"Add to %@: %@",toCatalog,addRemoteList);
-        for(SHXFile *font in addRemoteList)
+        for(SHXFile *file in addRemoteList)
         {
-            if(![toCatalog updateFont:font])
+            if(![toCatalog updateFile:file])
             {
-                NSLog(@"Could not copy font %@",font);
+                NSLog(@"Could not copy file %@",file);
             }
         }
     }
     
     if(_delegate)
     {
-        [[self delegate] fontSyncingEnd:self];
+        [[self delegate] fileSyncingEnd:self];
     }
 }
 
@@ -104,23 +104,23 @@
 {
     if(_delegate)
     {
-        [[self delegate] fontSyncingBegin:self];
+        [[self delegate] fileSyncingBegin:self];
     }
     
-    NSArray *allToFonts = [toCatalog allFonts];
-    NSArray *allFromFonts = [fromCatalog allFonts];
-    NSMutableArray *addList = [[NSMutableArray alloc] initWithArray:[fromCatalog allFonts]];
-    NSMutableArray *deleteList = [[NSMutableArray alloc] initWithArray:[toCatalog allFonts]];
+    NSArray *allToFiles = [toCatalog allFiles];
+    NSArray *allFromFiles = [fromCatalog allFiles];
+    NSMutableArray *addList = [[NSMutableArray alloc] initWithArray:[fromCatalog allFiles]];
+    NSMutableArray *deleteList = [[NSMutableArray alloc] initWithArray:[toCatalog allFiles]];
     
-    [addList removeObjectsInArray:allToFonts];
+    [addList removeObjectsInArray:allToFiles];
     
-    for(SHXLocalFile *font in [deleteList copy])
+    for(SHXLocalFile *file in [deleteList copy])
     {
-        for(SHXLocalFile *current in allFromFonts)
+        for(SHXLocalFile *current in allFromFiles)
         {
-            if([[current relativePath] isEqual:[font relativePath]])
+            if([[current relativePath] isEqual:[file relativePath]])
             {
-                [deleteList removeObject:font];
+                [deleteList removeObject:file];
             }
         }
     }
@@ -128,38 +128,38 @@
     if([addList count])
     {
         NSLog(@"Add to %@: %@",toCatalog,addList);
-        for(SHXFile *font in addList)
+        for(SHXFile *file in addList)
         {
-            if(![toCatalog updateFont:font])
+            if(![toCatalog updateFile:file])
             {
-                NSLog(@"Could not copy font %@ to %@",font,toCatalog);
+                NSLog(@"Could not copy file %@ to %@",file,toCatalog);
             }
         }
         
-        if(toCatalog == _localFontCatalog)
+        if(toCatalog == _localFileCatalog)
         {
             if(_delegate && [addList count])
             {
-                [[self delegate] changedFonts:addList sender:self];
+                [[self delegate] changedFiles:addList sender:self];
             }
         }
     }
     if([deleteList count])
     {
         NSLog(@"Delete from %@: %@",toCatalog,deleteList);
-        for(SHXFile *font in deleteList)
+        for(SHXFile *file in deleteList)
         {
-            if(![toCatalog deleteFont:font])
+            if(![toCatalog deleteFile:file])
             {
-                NSLog(@"Could not delete font %@ in %@",font,toCatalog);
+                NSLog(@"Could not delete file %@ in %@",file,toCatalog);
             }
         }
         
-        if(toCatalog == _localFontCatalog)
+        if(toCatalog == _localFileCatalog)
         {
             if(_delegate && [deleteList count])
             {
-                [[self delegate] removedFonts:deleteList sender:self];
+                [[self delegate] removedFiles:deleteList sender:self];
             }
         }
         
@@ -167,61 +167,61 @@
     
     if(_delegate)
     {
-        [[self delegate] fontSyncingEnd:self];
+        [[self delegate] fileSyncingEnd:self];
     }
 }
 
--(void)disappearedFonts:(NSArray *)fonts sender:(id)sender
+-(void)disappearedFiles:(NSArray *)files sender:(id)sender
 {
     @synchronized([SHXSharedLock sharedSyncLock])
     {
-        if([fonts count])
+        if([files count])
         {
-            id <SHXICatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
+            id <SHXICatalog> toBeSynced = sender == _localFileCatalog ? _remoteFileCatalog : _localFileCatalog;
             
-            for(SHXFile *font in fonts)
+            for(SHXFile *file in files)
             {
-                if(![toBeSynced deleteFont:font])
+                if(![toBeSynced deleteFile:file])
                 {
-                    NSLog(@"Could not delete font %@ in %@",font,toBeSynced);
+                    NSLog(@"Could not delete file %@ in %@",file,toBeSynced);
                 }
             }
             
-            if(toBeSynced == _localFontCatalog)
+            if(toBeSynced == _localFileCatalog)
             {
                 if(_delegate)
                 {
-                    [[self delegate] removedFonts:fonts sender:self];
+                    [[self delegate] removedFiles:files sender:self];
                 }
             }
         }
     }
 }
 
--(void)changedFonts:(NSArray *)fonts sender:(id)sender
+-(void)changedFiles:(NSArray *)files sender:(id)sender
 {
     @synchronized([SHXSharedLock sharedSyncLock])
     {
-        if([fonts count])
+        if([files count])
         {
-            id <SHXICatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
-            for(SHXFile *font in fonts)
+            id <SHXICatalog> toBeSynced = sender == _localFileCatalog ? _remoteFileCatalog : _localFileCatalog;
+            for(SHXFile *file in files)
             {
                 int retries = COPY_FONT_RETRIES;
-                while(retries > 0 && ![toBeSynced updateFont:font])
+                while(retries > 0 && ![toBeSynced updateFile:file])
                 {
-                    NSLog(@"Could not copy font %@ to %@ - Retrying...",font,toBeSynced);
+                    NSLog(@"Could not copy file %@ to %@ - Retrying...",file,toBeSynced);
                     [NSThread sleepForTimeInterval:0.01f];//Wait 0.01 seconds before retrying (this will halt the thread)
                     retries--;
                 }
                 
             }
             
-            if(toBeSynced == _localFontCatalog)
+            if(toBeSynced == _localFileCatalog)
             {
                 if(_delegate)
                 {
-                    [[self delegate] changedFonts:fonts sender:self];
+                    [[self delegate] changedFiles:files sender:self];
                 }
             }
         }

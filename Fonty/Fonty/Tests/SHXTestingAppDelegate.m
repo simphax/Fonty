@@ -15,7 +15,7 @@
 {
     @private
     id <SHXICatalog> _folderCatalog;
-    id <SHXISyncingManager> _fontManager;
+    id <SHXISyncingManager> _fileManager;
 }
 
 @end
@@ -25,32 +25,32 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     /*
-    _folderCatalog = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Fonts"]];
+    _folderCatalog = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Files"]];
     [_folderCatalog setDelegate:self];
      */
-    SHXLocalFolderCatalog *local = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsLocal"]];
-    SHXLocalFolderCatalog *remote = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsRemote"]];
+    SHXLocalFolderCatalog *local = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesLocal"]];
+    SHXLocalFolderCatalog *remote = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesRemote"]];
     
-    _fontManager = [[SHXSyncingManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:YES];
+    _fileManager = [[SHXSyncingManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:YES];
 }
 
 - (IBAction)didPressSync:(id)sender
 {
-    //[_fontManager performMerge];
+    //[_fileManager performMerge];
 }
 
 #pragma mark SHXICatalogDelegate
 
--(void)disappearedFonts:(NSArray *)fonts sender:(id)sender
+-(void)disappearedFiles:(NSArray *)files sender:(id)sender
 {
-    NSLog(@"Disappearing fonts: %@",fonts);
-    NSLog(@"All items: %@",[_folderCatalog allFonts]);
+    NSLog(@"Disappearing files: %@",files);
+    NSLog(@"All items: %@",[_folderCatalog allFiles]);
 }
 
--(void)appearedFonts:(NSArray *)fonts sender:(id)sender
+-(void)appearedFiles:(NSArray *)files sender:(id)sender
 {
-    NSLog(@"Appearing fonts: %@",fonts);
-    NSLog(@"All items: %@",[_folderCatalog allFonts]);
+    NSLog(@"Appearing files: %@",files);
+    NSLog(@"All items: %@",[_folderCatalog allFiles]);
 }
 
 @end

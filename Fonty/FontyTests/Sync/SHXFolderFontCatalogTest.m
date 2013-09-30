@@ -23,7 +23,7 @@
 - (void)setUp
 {
     [super setUp];
-    _catalog = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Fonts"]];
+    _catalog = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Files"]];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -33,10 +33,10 @@
     [super tearDown];
 }
 
-- (void)testallFonts
+- (void)testallFiles
 {
-    NSArray *arr = [_catalog allFonts];
-    NSLog(@"All fonts: %@",arr);
+    NSArray *arr = [_catalog allFiles];
+    NSLog(@"All files: %@",arr);
 }
 
 #pragma mark SHXICatalogDelegate
