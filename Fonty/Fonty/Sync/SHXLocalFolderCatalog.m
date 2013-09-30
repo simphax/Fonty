@@ -1,20 +1,20 @@
 //
-//  SHXFolderFontCatalog.m
+//  SHXLocalFolderCatalog.m
 //  Fonty
 //
 //  Created by Simon on 2013-09-28.
 //  Copyright (c) 2013 Simphax. All rights reserved.
 //
 
-#import "SHXFolderFontCatalog.h"
+#import "SHXLocalFolderCatalog.h"
 #import <CDEvents/CDEvent.h>
 #import <CDEvents/CDEvents.h>
 #import <CDEvents/CDEventsDelegate.h>
-#import "SHXLocalFont.h"
+#import "SHXLocalFile.h"
 #import "NSFileManager+DirectoryLocations.h"
 #import "SHXSharedLock.h"
 
-@interface SHXFolderFontCatalog() <CDEventsDelegate>
+@interface SHXLocalFolderCatalog() <CDEventsDelegate>
 {
 @private
     NSString *_path;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation SHXFolderFontCatalog
+@implementation SHXLocalFolderCatalog
 
 @synthesize delegate = _delegate;
 
@@ -95,9 +95,9 @@
             
             [changed removeObjectsInArray:_previousFileList];
             
-            for(SHXLocalFont *font in [disappeared copy])
+            for(SHXLocalFile *font in [disappeared copy])
             {
-                for(SHXLocalFont *current in newFileList)
+                for(SHXLocalFile *current in newFileList)
                 {
                     if([[current relativePath] isEqual:[font relativePath]])
                     {
@@ -119,7 +119,7 @@
     }
 }
 
-#pragma mark SHXIFontCatalog
+#pragma mark SHXICatalog
 
 -(NSArray *)allFonts
 {
@@ -131,19 +131,19 @@
             NSDictionary *attrs = [_fileManager attributesOfItemAtPath:aFile error: NULL];
             NSNumber *hash = [NSNumber numberWithUnsignedLongLong:[attrs fileSize]];
             
-            [result addObject:[[SHXLocalFont alloc] initWithBase:_path relativePath:aFile hash:hash]];
+            [result addObject:[[SHXLocalFile alloc] initWithBase:_path relativePath:aFile hash:hash]];
         }
     }
     return result;
 }
 
--(BOOL)updateFont:(SHXFont *)font
+-(BOOL)updateFont:(SHXFile *)font
 {
     NSNumber *lock = [NSNumber numberWithUnsignedInteger:[font relativePath].hash]; //NSNumber are singeltons for equal values
     @synchronized(lock)
     {
         _updating = TRUE;
-        SHXLocalFont *localFont = (SHXLocalFont *)font;
+        SHXLocalFile *localFont = (SHXLocalFile *)font;
         NSLog(@"Copy %@ to %@",[localFont localPath],[self myPathWithFile:[font relativePath]]);
         [_fileManager removeItemAtPath:[self myPathWithFile:[font relativePath]] error:nil];
         BOOL result = [_fileManager copyItemAtPath:[localFont localPath] toPath:[self myPathWithFile:[font relativePath]] error:nil];
@@ -153,13 +153,13 @@
     }
 }
 
--(BOOL)deleteFont:(SHXFont *)font
+-(BOOL)deleteFont:(SHXFile *)font
 {
     NSNumber *lock = [NSNumber numberWithUnsignedInteger:[font relativePath].hash];
     @synchronized(lock)
     {
         _deleting = TRUE;
-        SHXLocalFont *localFont = (SHXLocalFont *)font;
+        SHXLocalFile *localFont = (SHXLocalFile *)font;
         NSLog(@"Move to trash %@",[localFont localPath]);
         NSURL* url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]]];
         BOOL result = [_fileManager trashItemAtURL:url resultingItemURL:nil error:nil];

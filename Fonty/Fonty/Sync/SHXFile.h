@@ -1,5 +1,5 @@
 //
-//  SHXFont.h
+//  SHXFile.h
 //  Fonty
 //
 //  Created by Simon on 2013-09-29.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SHXFont : NSObject
+@interface SHXFile : NSObject
 
 -(id) initWithRelativePath:(NSString*) path;
 

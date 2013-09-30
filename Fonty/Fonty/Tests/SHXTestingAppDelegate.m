@@ -8,14 +8,14 @@
 
 #import "SHXTestingAppDelegate.h"
 
-#import "SHXFolderFontCatalog.h"
-#import "SHXFontManager.h"
+#import "SHXLocalFolderCatalog.h"
+#import "SHXSyncingManager.h"
 
-@interface SHXTestingAppDelegate() <SHXIFontManagerDelegate>
+@interface SHXTestingAppDelegate() <SHXISyncingManagerDelegate>
 {
     @private
-    id <SHXIFontCatalog> _folderCatalog;
-    id <SHXIFontManager> _fontManager;
+    id <SHXICatalog> _folderCatalog;
+    id <SHXISyncingManager> _fontManager;
 }
 
 @end
@@ -25,13 +25,13 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     /*
-    _folderCatalog = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Fonts"]];
+    _folderCatalog = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Fonts"]];
     [_folderCatalog setDelegate:self];
      */
-    SHXFolderFontCatalog *local = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsLocal"]];
-    SHXFolderFontCatalog *remote = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsRemote"]];
+    SHXLocalFolderCatalog *local = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsLocal"]];
+    SHXLocalFolderCatalog *remote = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FontsRemote"]];
     
-    _fontManager = [[SHXFontManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:YES];
+    _fontManager = [[SHXSyncingManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:YES];
 }
 
 - (IBAction)didPressSync:(id)sender
@@ -39,7 +39,7 @@
     //[_fontManager performMerge];
 }
 
-#pragma mark SHXIFontCatalogDelegate
+#pragma mark SHXICatalogDelegate
 
 -(void)disappearedFonts:(NSArray *)fonts sender:(id)sender
 {

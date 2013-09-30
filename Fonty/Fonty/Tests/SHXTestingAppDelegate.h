@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHXIFontCatalog.h"
+#import "SHXICatalog.h"
 
 @interface SHXTestingAppDelegate : NSObject <NSApplicationDelegate>
 

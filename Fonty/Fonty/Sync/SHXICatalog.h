@@ -7,22 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHXFont.h"
+#import "SHXFile.h"
 
-@protocol SHXIFontCatalogDelegate <NSObject>
+@protocol SHXICatalogDelegate <NSObject>
 
 -(void)disappearedFonts:(NSArray *)fonts sender:(id)sender;
 -(void)changedFonts:(NSArray *)fonts sender:(id)sender;
 
 @end
 
-@protocol SHXIFontCatalog <NSObject>
+@protocol SHXICatalog <NSObject>
 
 -(NSArray *)allFonts;
 
--(BOOL)updateFont:(SHXFont *)font;
--(BOOL)deleteFont:(SHXFont *)font;
+-(BOOL)updateFont:(SHXFile *)font;
+-(BOOL)deleteFont:(SHXFile *)font;
 
-@property(nonatomic,assign)id<SHXIFontCatalogDelegate> delegate;
+@property(nonatomic,assign)id<SHXICatalogDelegate> delegate;
 
 @end

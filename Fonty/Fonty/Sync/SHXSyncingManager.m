@@ -1,31 +1,31 @@
 //
-//  SHXFontManager.m
+//  SHXSyncingManager.m
 //  Fonty
 //
 //  Created by Simon on 2013-09-28.
 //  Copyright (c) 2013 Simphax. All rights reserved.
 //
 
-#import "SHXFontManager.h"
+#import "SHXSyncingManager.h"
 #import "SHXSharedLock.h"
-#import "SHXLocalFont.h"
+#import "SHXLocalFile.h"
 
 #define COPY_FONT_RETRIES 5
 
-@interface SHXFontManager() <SHXIFontCatalogDelegate>
+@interface SHXSyncingManager() <SHXICatalogDelegate>
 {
     @private
-    id <SHXIFontCatalog> _localFontCatalog;
-    id <SHXIFontCatalog> _remoteFontCatalog;
+    id <SHXICatalog> _localFontCatalog;
+    id <SHXICatalog> _remoteFontCatalog;
 }
 
 @end
 
-@implementation SHXFontManager
+@implementation SHXSyncingManager
 
 @synthesize delegate = _delegate;
 
--(id) initWithCatalog:(id <SHXIFontCatalog>)local andCatalog:(id <SHXIFontCatalog>)remote withDelegate:(id<SHXIFontManagerDelegate>)delegate asFirstTime:(BOOL)first
+-(id) initWithCatalog:(id <SHXICatalog>)local andCatalog:(id <SHXICatalog>)remote withDelegate:(id<SHXISyncingManagerDelegate>)delegate asFirstTime:(BOOL)first
 {
     self = [super init];
     
@@ -54,7 +54,7 @@
     return [_localFontCatalog allFonts];
 }
 
--(void) performMergeWith:(id <SHXIFontCatalog>)fromCatalog and:(id <SHXIFontCatalog>)toCatalog
+-(void) performMergeWith:(id <SHXICatalog>)fromCatalog and:(id <SHXICatalog>)toCatalog
 {
     if(_delegate)
     {
@@ -74,7 +74,7 @@
     if([addLocalList count])
     {
         NSLog(@"Add to %@: %@",fromCatalog,addLocalList);
-        for(SHXFont *font in addLocalList)
+        for(SHXFile *font in addLocalList)
         {
             if(![fromCatalog updateFont:font])
             {
@@ -85,7 +85,7 @@
     if([addRemoteList count])
     {
         NSLog(@"Add to %@: %@",toCatalog,addRemoteList);
-        for(SHXFont *font in addRemoteList)
+        for(SHXFile *font in addRemoteList)
         {
             if(![toCatalog updateFont:font])
             {
@@ -100,7 +100,7 @@
     }
 }
 
--(void) performHardFetchFrom:(id <SHXIFontCatalog>)fromCatalog to:(id <SHXIFontCatalog>)toCatalog
+-(void) performHardFetchFrom:(id <SHXICatalog>)fromCatalog to:(id <SHXICatalog>)toCatalog
 {
     if(_delegate)
     {
@@ -114,9 +114,9 @@
     
     [addList removeObjectsInArray:allToFonts];
     
-    for(SHXLocalFont *font in [deleteList copy])
+    for(SHXLocalFile *font in [deleteList copy])
     {
-        for(SHXLocalFont *current in allFromFonts)
+        for(SHXLocalFile *current in allFromFonts)
         {
             if([[current relativePath] isEqual:[font relativePath]])
             {
@@ -128,7 +128,7 @@
     if([addList count])
     {
         NSLog(@"Add to %@: %@",toCatalog,addList);
-        for(SHXFont *font in addList)
+        for(SHXFile *font in addList)
         {
             if(![toCatalog updateFont:font])
             {
@@ -147,7 +147,7 @@
     if([deleteList count])
     {
         NSLog(@"Delete from %@: %@",toCatalog,deleteList);
-        for(SHXFont *font in deleteList)
+        for(SHXFile *font in deleteList)
         {
             if(![toCatalog deleteFont:font])
             {
@@ -177,9 +177,9 @@
     {
         if([fonts count])
         {
-            id <SHXIFontCatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
+            id <SHXICatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
             
-            for(SHXFont *font in fonts)
+            for(SHXFile *font in fonts)
             {
                 if(![toBeSynced deleteFont:font])
                 {
@@ -204,8 +204,8 @@
     {
         if([fonts count])
         {
-            id <SHXIFontCatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
-            for(SHXFont *font in fonts)
+            id <SHXICatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
+            for(SHXFile *font in fonts)
             {
                 int retries = COPY_FONT_RETRIES;
                 while(retries > 0 && ![toBeSynced updateFont:font])

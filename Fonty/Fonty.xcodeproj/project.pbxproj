@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F449CDAA17F7FDC40029ACE8 /* FontyIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F449CDA917F7FDC40029ACE8 /* FontyIcon.icns */; };
-		F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */; };
-		F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926817F76D8E005A5F79 /* SHXFontManager.m */; };
+		F44C926617F76CF8005A5F79 /* SHXLocalFolderCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926517F76CF8005A5F79 /* SHXLocalFolderCatalog.m */; };
+		F44C926917F76D8E005A5F79 /* SHXSyncingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926817F76D8E005A5F79 /* SHXSyncingManager.m */; };
 		F44C926C17F76F82005A5F79 /* SHXFolderFontCatalogTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */; };
 		F44FCB2517F73D5C006DD0BA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44FCB2417F73D5C006DD0BA /* Cocoa.framework */; };
 		F44FCB2F17F73D5C006DD0BA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F44FCB2D17F73D5C006DD0BA /* InfoPlist.strings */; };
@@ -25,8 +25,8 @@
 		F4A2AEC317FA2249004BECF8 /* SHXSharedLock.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AEC217FA2249004BECF8 /* SHXSharedLock.m */; };
 		F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */; };
 		F4C1ACF917F7966D006107D3 /* TestApplication.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C1ACF717F7966D006107D3 /* TestApplication.xib */; };
-		F4C1ACFC17F79D5B006107D3 /* SHXFont.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACFB17F79D5B006107D3 /* SHXFont.m */; };
-		F4C1AD0217F7B87C006107D3 /* SHXLocalFont.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1AD0117F7B87C006107D3 /* SHXLocalFont.m */; };
+		F4C1ACFC17F79D5B006107D3 /* SHXFile.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACFB17F79D5B006107D3 /* SHXFile.m */; };
+		F4C1AD0217F7B87C006107D3 /* SHXLocalFile.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1AD0117F7B87C006107D3 /* SHXLocalFile.m */; };
 		F4C1AD5417F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1AD5317F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m */; };
 		F4C1AD5617F7DE32006107D3 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C1AD5517F7DE32006107D3 /* Application.xib */; };
 		F4C1AD5917F7DEAD006107D3 /* SHXApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1AD5817F7DEAD006107D3 /* SHXApplication.m */; };
@@ -65,12 +65,12 @@
 
 /* Begin PBXFileReference section */
 		F449CDA917F7FDC40029ACE8 /* FontyIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = FontyIcon.icns; sourceTree = "<group>"; };
-		F44C925E17F75466005A5F79 /* SHXIFontCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXIFontCatalog.h; path = Sync/SHXIFontCatalog.h; sourceTree = "<group>"; };
-		F44C926417F76CF8005A5F79 /* SHXFolderFontCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXFolderFontCatalog.h; path = Sync/SHXFolderFontCatalog.h; sourceTree = "<group>"; };
-		F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFolderFontCatalog.m; path = Sync/SHXFolderFontCatalog.m; sourceTree = "<group>"; };
-		F44C926717F76D8E005A5F79 /* SHXFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXFontManager.h; path = Sync/SHXFontManager.h; sourceTree = "<group>"; };
-		F44C926817F76D8E005A5F79 /* SHXFontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFontManager.m; path = Sync/SHXFontManager.m; sourceTree = "<group>"; };
-		F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFolderFontCatalogTest.m; path = Sync/SHXFolderFontCatalogTest.m; sourceTree = "<group>"; };
+		F44C925E17F75466005A5F79 /* SHXICatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXICatalog.h; path = Sync/SHXICatalog.h; sourceTree = "<group>"; };
+		F44C926417F76CF8005A5F79 /* SHXLocalFolderCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SHXLocalFolderCatalog.h; path = Sync/SHXLocalFolderCatalog.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		F44C926517F76CF8005A5F79 /* SHXLocalFolderCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SHXLocalFolderCatalog.m; path = Sync/SHXLocalFolderCatalog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		F44C926717F76D8E005A5F79 /* SHXSyncingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXSyncingManager.h; path = Sync/SHXSyncingManager.h; sourceTree = "<group>"; };
+		F44C926817F76D8E005A5F79 /* SHXSyncingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXSyncingManager.m; path = Sync/SHXSyncingManager.m; sourceTree = "<group>"; };
+		F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SHXFolderFontCatalogTest.m; path = Sync/SHXFolderFontCatalogTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F44FCB2117F73D5C006DD0BA /* Fonty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fonty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44FCB2417F73D5C006DD0BA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F44FCB2717F73D5C006DD0BA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -92,18 +92,18 @@
 		F4A2AEBF17FA1EF3004BECF8 /* SHXSharedLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXSharedLock.h; path = Sync/SHXSharedLock.h; sourceTree = "<group>"; };
 		F4A2AEC217FA2249004BECF8 /* SHXSharedLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXSharedLock.m; path = Sync/SHXSharedLock.m; sourceTree = "<group>"; };
 		F4C1ACF517F7966D006107D3 /* SHXTestingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXTestingAppDelegate.h; path = Tests/SHXTestingAppDelegate.h; sourceTree = "<group>"; };
-		F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXTestingAppDelegate.m; path = Tests/SHXTestingAppDelegate.m; sourceTree = "<group>"; };
+		F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SHXTestingAppDelegate.m; path = Tests/SHXTestingAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4C1ACF717F7966D006107D3 /* TestApplication.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestApplication.xib; path = Tests/TestApplication.xib; sourceTree = "<group>"; };
-		F4C1ACFA17F79D5A006107D3 /* SHXFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXFont.h; path = Sync/SHXFont.h; sourceTree = "<group>"; };
-		F4C1ACFB17F79D5B006107D3 /* SHXFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFont.m; path = Sync/SHXFont.m; sourceTree = "<group>"; };
-		F4C1ACFD17F7B2D7006107D3 /* SHXIFontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXIFontManager.h; path = Sync/SHXIFontManager.h; sourceTree = "<group>"; };
-		F4C1AD0017F7B87C006107D3 /* SHXLocalFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXLocalFont.h; path = Sync/SHXLocalFont.h; sourceTree = "<group>"; };
-		F4C1AD0117F7B87C006107D3 /* SHXLocalFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXLocalFont.m; path = Sync/SHXLocalFont.m; sourceTree = "<group>"; };
+		F4C1ACFA17F79D5A006107D3 /* SHXFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXFile.h; path = Sync/SHXFile.h; sourceTree = "<group>"; };
+		F4C1ACFB17F79D5B006107D3 /* SHXFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXFile.m; path = Sync/SHXFile.m; sourceTree = "<group>"; };
+		F4C1ACFD17F7B2D7006107D3 /* SHXISyncingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXISyncingManager.h; path = Sync/SHXISyncingManager.h; sourceTree = "<group>"; };
+		F4C1AD0017F7B87C006107D3 /* SHXLocalFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXLocalFile.h; path = Sync/SHXLocalFile.h; sourceTree = "<group>"; };
+		F4C1AD0117F7B87C006107D3 /* SHXLocalFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXLocalFile.m; path = Sync/SHXLocalFile.m; sourceTree = "<group>"; };
 		F4C1AD5217F7D0C4006107D3 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "NSClasses/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		F4C1AD5317F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "NSClasses/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		F4C1AD5517F7DE32006107D3 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
 		F4C1AD5717F7DEAD006107D3 /* SHXApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHXApplication.h; sourceTree = "<group>"; };
-		F4C1AD5817F7DEAD006107D3 /* SHXApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHXApplication.m; sourceTree = "<group>"; };
+		F4C1AD5817F7DEAD006107D3 /* SHXApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SHXApplication.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4C1AD5B17F7E0B2006107D3 /* SHXStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXStatusView.h; path = Menubar/SHXStatusView.h; sourceTree = "<group>"; };
 		F4C1AD5C17F7E0B2006107D3 /* SHXStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXStatusView.m; path = Menubar/SHXStatusView.m; sourceTree = "<group>"; };
 		F4C1AD6017F7E43A006107D3 /* SHXPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXPopoverViewController.h; path = Menubar/SHXPopoverViewController.h; sourceTree = "<group>"; };
@@ -142,16 +142,16 @@
 		F44C925A17F750EC005A5F79 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
-				F44C925E17F75466005A5F79 /* SHXIFontCatalog.h */,
-				F44C926417F76CF8005A5F79 /* SHXFolderFontCatalog.h */,
-				F44C926517F76CF8005A5F79 /* SHXFolderFontCatalog.m */,
-				F44C926717F76D8E005A5F79 /* SHXFontManager.h */,
-				F44C926817F76D8E005A5F79 /* SHXFontManager.m */,
-				F4C1ACFA17F79D5A006107D3 /* SHXFont.h */,
-				F4C1ACFB17F79D5B006107D3 /* SHXFont.m */,
-				F4C1ACFD17F7B2D7006107D3 /* SHXIFontManager.h */,
-				F4C1AD0017F7B87C006107D3 /* SHXLocalFont.h */,
-				F4C1AD0117F7B87C006107D3 /* SHXLocalFont.m */,
+				F44C925E17F75466005A5F79 /* SHXICatalog.h */,
+				F44C926417F76CF8005A5F79 /* SHXLocalFolderCatalog.h */,
+				F44C926517F76CF8005A5F79 /* SHXLocalFolderCatalog.m */,
+				F44C926717F76D8E005A5F79 /* SHXSyncingManager.h */,
+				F44C926817F76D8E005A5F79 /* SHXSyncingManager.m */,
+				F4C1ACFA17F79D5A006107D3 /* SHXFile.h */,
+				F4C1ACFB17F79D5B006107D3 /* SHXFile.m */,
+				F4C1ACFD17F7B2D7006107D3 /* SHXISyncingManager.h */,
+				F4C1AD0017F7B87C006107D3 /* SHXLocalFile.h */,
+				F4C1AD0117F7B87C006107D3 /* SHXLocalFile.m */,
 				F4A2AEBF17FA1EF3004BECF8 /* SHXSharedLock.h */,
 				F4A2AEC217FA2249004BECF8 /* SHXSharedLock.m */,
 			);
@@ -434,11 +434,11 @@
 				F4C1AD6317F7E43A006107D3 /* SHXPopoverViewController.m in Sources */,
 				F4C1AD5917F7DEAD006107D3 /* SHXApplication.m in Sources */,
 				F4C1AD5417F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m in Sources */,
-				F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */,
+				F44C926917F76D8E005A5F79 /* SHXSyncingManager.m in Sources */,
 				F4A2AEC317FA2249004BECF8 /* SHXSharedLock.m in Sources */,
-				F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */,
-				F4C1AD0217F7B87C006107D3 /* SHXLocalFont.m in Sources */,
-				F4C1ACFC17F79D5B006107D3 /* SHXFont.m in Sources */,
+				F44C926617F76CF8005A5F79 /* SHXLocalFolderCatalog.m in Sources */,
+				F4C1AD0217F7B87C006107D3 /* SHXLocalFile.m in Sources */,
+				F4C1ACFC17F79D5B006107D3 /* SHXFile.m in Sources */,
 				F44FCB3117F73D5C006DD0BA /* main.m in Sources */,
 				F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */,
 				F4C1AD5D17F7E0B2006107D3 /* SHXStatusView.m in Sources */,

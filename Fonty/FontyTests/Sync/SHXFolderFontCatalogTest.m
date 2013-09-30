@@ -1,5 +1,5 @@
 //
-//  SHXFolderFontCatalogTest.m
+//  SHXLocalFolderCatalogTest.m
 //  Fonty
 //
 //  Created by Simon on 2013-09-28.
@@ -7,23 +7,23 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SHXFolderFontCatalog.h"
+#import "SHXLocalFolderCatalog.h"
 
-@interface SHXFolderFontCatalogTest : XCTestCase <SHXIFontCatalogDelegate> {
+@interface SHXLocalFolderCatalogTest : XCTestCase <SHXICatalogDelegate> {
 
     @private
-    id <SHXIFontCatalog> _catalog;
+    id <SHXICatalog> _catalog;
 
 }
 
 @end
 
-@implementation SHXFolderFontCatalogTest
+@implementation SHXLocalFolderCatalogTest
 
 - (void)setUp
 {
     [super setUp];
-    _catalog = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Fonts"]];
+    _catalog = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Fonts"]];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -39,7 +39,7 @@
     NSLog(@"All fonts: %@",arr);
 }
 
-#pragma mark SHXIFontCatalogDelegate
+#pragma mark SHXICatalogDelegate
 -(void) collectionModified:(id)sender {
     
 }

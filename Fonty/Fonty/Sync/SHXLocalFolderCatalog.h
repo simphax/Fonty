@@ -1,5 +1,5 @@
 //
-//  SHXFolderFontCatalog.h
+//  SHXLocalFolderCatalog.h
 //  Fonty
 //
 //  Created by Simon on 2013-09-28.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SHXIFontCatalog.h"
+#import "SHXICatalog.h"
 
-@interface SHXFolderFontCatalog : NSObject <SHXIFontCatalog>
+@interface SHXLocalFolderCatalog : NSObject <SHXICatalog>
 
 -(id) initWithFolder:(NSString *)path;
 

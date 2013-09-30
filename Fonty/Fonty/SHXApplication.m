@@ -8,16 +8,16 @@
 
 #import "SHXApplication.h"
 #import "SHXStatusView.h"
-#import "SHXFontManager.h"
-#import "SHXFolderFontCatalog.h"
+#import "SHXSyncingManager.h"
+#import "SHXLocalFolderCatalog.h"
 #import "NSFileManager+DirectoryLocations.h"
 #import "LaunchAtLoginController.h"
 
-@interface SHXApplication() <SHXIFontManagerDelegate, NSUserNotificationCenterDelegate>
+@interface SHXApplication() <SHXISyncingManagerDelegate, NSUserNotificationCenterDelegate>
 {
     @private
     SHXStatusView *_statusView;
-    id <SHXIFontManager> _fontManager;
+    id <SHXISyncingManager> _fontManager;
     //unsigned long _totalAddedFonts;
 }
 @end
@@ -28,10 +28,10 @@
 {
     [self setupLaunchAtLogin];
     
-    SHXFolderFontCatalog *local = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
-    SHXFolderFontCatalog *remote = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty"]];
+    SHXLocalFolderCatalog *local = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
+    SHXLocalFolderCatalog *remote = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty"]];
 
-    _fontManager = [[SHXFontManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:[self isFirstTime]];
+    _fontManager = [[SHXSyncingManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:[self isFirstTime]];
     
     _statusView = [[SHXStatusView alloc] init];
     
@@ -64,7 +64,7 @@
     return firstTime;
 }
 
-#pragma mark SHXIFontManagerDelegate
+#pragma mark SHXISyncingManagerDelegate
 
 -(void) fontSyncingBegin:(id)sender
 {
