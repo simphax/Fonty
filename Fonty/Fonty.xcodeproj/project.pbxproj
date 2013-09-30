@@ -22,6 +22,7 @@
 		F48B406117F86B6F00D709C7 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48B406017F86B6F00D709C7 /* LaunchAtLoginController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F4A2AEBD17F9DB13004BECF8 /* CDEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A2AEBC17F9DB12004BECF8 /* CDEvents.framework */; };
 		F4A2AEBE17F9DB4D004BECF8 /* CDEvents.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4A2AEBC17F9DB12004BECF8 /* CDEvents.framework */; };
+		F4A2AEC317FA2249004BECF8 /* SHXSharedLock.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AEC217FA2249004BECF8 /* SHXSharedLock.m */; };
 		F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */; };
 		F4C1ACF917F7966D006107D3 /* TestApplication.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C1ACF717F7966D006107D3 /* TestApplication.xib */; };
 		F4C1ACFC17F79D5B006107D3 /* SHXFont.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACFB17F79D5B006107D3 /* SHXFont.m */; };
@@ -88,6 +89,8 @@
 		F48B405F17F86B6F00D709C7 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = Libraries/LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = "<group>"; };
 		F48B406017F86B6F00D709C7 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchAtLoginController.m; path = Libraries/LaunchAtLoginController/LaunchAtLoginController.m; sourceTree = "<group>"; };
 		F4A2AEBC17F9DB12004BECF8 /* CDEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CDEvents.framework; path = ../CDEvents.framework; sourceTree = "<group>"; };
+		F4A2AEBF17FA1EF3004BECF8 /* SHXSharedLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXSharedLock.h; path = Sync/SHXSharedLock.h; sourceTree = "<group>"; };
+		F4A2AEC217FA2249004BECF8 /* SHXSharedLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXSharedLock.m; path = Sync/SHXSharedLock.m; sourceTree = "<group>"; };
 		F4C1ACF517F7966D006107D3 /* SHXTestingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXTestingAppDelegate.h; path = Tests/SHXTestingAppDelegate.h; sourceTree = "<group>"; };
 		F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXTestingAppDelegate.m; path = Tests/SHXTestingAppDelegate.m; sourceTree = "<group>"; };
 		F4C1ACF717F7966D006107D3 /* TestApplication.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestApplication.xib; path = Tests/TestApplication.xib; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				F4C1ACFD17F7B2D7006107D3 /* SHXIFontManager.h */,
 				F4C1AD0017F7B87C006107D3 /* SHXLocalFont.h */,
 				F4C1AD0117F7B87C006107D3 /* SHXLocalFont.m */,
+				F4A2AEBF17FA1EF3004BECF8 /* SHXSharedLock.h */,
+				F4A2AEC217FA2249004BECF8 /* SHXSharedLock.m */,
 			);
 			name = Sync;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 				F4C1AD5917F7DEAD006107D3 /* SHXApplication.m in Sources */,
 				F4C1AD5417F7D0C4006107D3 /* NSFileManager+DirectoryLocations.m in Sources */,
 				F44C926917F76D8E005A5F79 /* SHXFontManager.m in Sources */,
+				F4A2AEC317FA2249004BECF8 /* SHXSharedLock.m in Sources */,
 				F44C926617F76CF8005A5F79 /* SHXFolderFontCatalog.m in Sources */,
 				F4C1AD0217F7B87C006107D3 /* SHXLocalFont.m in Sources */,
 				F4C1ACFC17F79D5B006107D3 /* SHXFont.m in Sources */,

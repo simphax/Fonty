@@ -7,6 +7,10 @@
 //
 
 #import "SHXFontManager.h"
+#import "SHXSharedLock.h"
+#import "SHXLocalFont.h"
+
+#define COPY_FONT_RETRIES 5
 
 @interface SHXFontManager() <SHXIFontCatalogDelegate>
 {
@@ -25,13 +29,10 @@
 {
     self = [super init];
     
+    [self setDelegate:delegate];
+    
     _localFontCatalog = local;
     _remoteFontCatalog = remote;
-    
-    [_localFontCatalog setDelegate:self];
-    [_remoteFontCatalog setDelegate:self];
-    
-    [self setDelegate:delegate];
     
     if(first)
     {
@@ -41,6 +42,9 @@
     {
         [self performHardFetchFrom:_remoteFontCatalog to:_localFontCatalog];
     }
+    
+    [_localFontCatalog setDelegate:self];
+    [_remoteFontCatalog setDelegate:self];
     
     return self;
 }
@@ -109,7 +113,17 @@
     NSMutableArray *deleteList = [[NSMutableArray alloc] initWithArray:[toCatalog allFonts]];
     
     [addList removeObjectsInArray:allToFonts];
-    [deleteList removeObjectsInArray:allFromFonts];
+    
+    for(SHXLocalFont *font in [deleteList copy])
+    {
+        for(SHXLocalFont *current in allFromFonts)
+        {
+            if([[current relativePath] isEqual:[font relativePath]])
+            {
+                [deleteList removeObject:font];
+            }
+        }
+    }
     
     if([addList count])
     {
@@ -157,12 +171,60 @@
     }
 }
 
--(void)collectionChanged:(id)sender
+-(void)disappearedFonts:(NSArray *)fonts sender:(id)sender
 {
-    @synchronized(self)
+    @synchronized([SHXSharedLock sharedSyncLock])
     {
-        id <SHXIFontCatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
-        [self performHardFetchFrom:(id<SHXIFontCatalog>)sender to:toBeSynced];
+        if([fonts count])
+        {
+            id <SHXIFontCatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
+            
+            for(SHXFont *font in fonts)
+            {
+                if(![toBeSynced deleteFont:font])
+                {
+                    NSLog(@"Could not delete font %@ in %@",font,toBeSynced);
+                }
+            }
+            
+            if(toBeSynced == _localFontCatalog)
+            {
+                if(_delegate)
+                {
+                    [[self delegate] removedFonts:fonts sender:self];
+                }
+            }
+        }
+    }
+}
+
+-(void)changedFonts:(NSArray *)fonts sender:(id)sender
+{
+    @synchronized([SHXSharedLock sharedSyncLock])
+    {
+        if([fonts count])
+        {
+            id <SHXIFontCatalog> toBeSynced = sender == _localFontCatalog ? _remoteFontCatalog : _localFontCatalog;
+            for(SHXFont *font in fonts)
+            {
+                int retries = COPY_FONT_RETRIES;
+                while(retries > 0 && ![toBeSynced updateFont:font])
+                {
+                    NSLog(@"Could not copy font %@ to %@ - Retrying...",font,toBeSynced);
+                    [NSThread sleepForTimeInterval:0.01f];//Wait 0.01 seconds before retrying (this will halt the thread)
+                    retries--;
+                }
+                
+            }
+            
+            if(toBeSynced == _localFontCatalog)
+            {
+                if(_delegate)
+                {
+                    [[self delegate] changedFonts:fonts sender:self];
+                }
+            }
+        }
     }
 }
 @end

@@ -12,6 +12,7 @@
 #import <CDEvents/CDEventsDelegate.h>
 #import "SHXLocalFont.h"
 #import "NSFileManager+DirectoryLocations.h"
+#import "SHXSharedLock.h"
 
 @interface SHXFolderFontCatalog() <CDEventsDelegate>
 {
@@ -19,6 +20,7 @@
     NSString *_path;
     CDEvents *_folderEvents;
     NSFileManager *_fileManager;
+    NSArray *_previousFileList;
     BOOL _deleting;
     BOOL _updating;
 }
@@ -27,9 +29,10 @@
 
 @implementation SHXFolderFontCatalog
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
--(id) initWithFolder:(NSString *)path {
+-(id) initWithFolder:(NSString *)path
+{
     self = [super init];
     
     NSLog(@"Creating folder %@: %hhd",path,[_fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil]);
@@ -38,16 +41,20 @@
     
     _fileManager = [[NSFileManager alloc] init];
     
+    _previousFileList = [self allFonts];
+    
     [self setupFolderEventListenerOnPath:_path];
     
     return self;
 }
 
-- (NSString *)description {
+- (NSString *)description
+{
     return _path;
 }
 
-- (void) setupFolderEventListenerOnPath:(NSString *)path {
+- (void) setupFolderEventListenerOnPath:(NSString *)path
+{
     if (_folderEvents) return;
     NSURL *url = [NSURL URLWithString:[self URLEncodeString:path]];
     NSMutableArray *urls = [NSMutableArray arrayWithObject:url];
@@ -77,28 +84,57 @@
 #pragma mark CDEventsDelegate
 - (void)URLWatcher:(CDEvents *)urlWatcher eventOccurred:(CDEvent *)event
 {
-    if(!_updating && !_deleting && ([event isCreated] || [event isRenamed] || [event isRemoved]))
+    @synchronized([SHXSharedLock sharedSyncLock])
     {
+        NSArray *newFileList = [self allFonts];
         NSLog(@"Path %@ changed",_path);
-        if(delegate)
-        {
-            [delegate collectionChanged:self];
+        if(_delegate){
+            
+            NSMutableArray *disappeared = [NSMutableArray arrayWithArray:_previousFileList];
+            NSMutableArray *changed = [NSMutableArray arrayWithArray:newFileList];
+            
+            [changed removeObjectsInArray:_previousFileList];
+            
+            for(SHXLocalFont *font in [disappeared copy])
+            {
+                for(SHXLocalFont *current in newFileList)
+                {
+                    if([[current relativePath] isEqual:[font relativePath]])
+                    {
+                        [disappeared removeObject:font];
+                    }
+                }
+            }
+            
+            if([changed count])
+            {
+                [[self delegate] changedFonts:changed sender:self];
+            }
+            if([disappeared count])
+            {
+                [[self delegate] disappearedFonts:disappeared sender:self];
+            }
         }
+        _previousFileList = newFileList;
     }
 }
 
 #pragma mark SHXIFontCatalog
 
--(NSArray *)allFonts{
+-(NSArray *)allFonts
+{
     NSArray *allFiles = [_fileManager contentsOfDirectoryAtPath:_path error:nil];
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for(NSString *aFile in allFiles){
         if([self isIncompleteFile:[self myPathWithFile:aFile]])//Do not add to the list if it seems incomplete (we are probably copying or downloading the file from somewhere)
         {
-            [result addObject:[[SHXLocalFont alloc] initWithBase:_path relativePath:aFile]];
+            NSDictionary *attrs = [_fileManager attributesOfItemAtPath:aFile error: NULL];
+            NSNumber *hash = [NSNumber numberWithUnsignedLongLong:[attrs fileSize]];
+            
+            [result addObject:[[SHXLocalFont alloc] initWithBase:_path relativePath:aFile hash:hash]];
         }
     }
-    return [[NSArray alloc] initWithArray:result];//Return immutable array
+    return result;
 }
 
 -(BOOL)updateFont:(SHXFont *)font
@@ -111,6 +147,7 @@
         NSLog(@"Copy %@ to %@",[localFont localPath],[self myPathWithFile:[font relativePath]]);
         [_fileManager removeItemAtPath:[self myPathWithFile:[font relativePath]] error:nil];
         BOOL result = [_fileManager copyItemAtPath:[localFont localPath] toPath:[self myPathWithFile:[font relativePath]] error:nil];
+        _previousFileList = [self allFonts];
         _updating = FALSE;
         return result;
     }
@@ -126,6 +163,7 @@
         NSLog(@"Move to trash %@",[localFont localPath]);
         NSURL* url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",_path,[font relativePath]]];
         BOOL result = [_fileManager trashItemAtURL:url resultingItemURL:nil error:nil];
+        _previousFileList = [self allFonts];
         _deleting = FALSE;
         return result;
     }

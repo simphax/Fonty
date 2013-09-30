@@ -11,7 +11,8 @@
 
 @protocol SHXIFontCatalogDelegate <NSObject>
 
--(void)collectionChanged:(id)sender;
+-(void)disappearedFonts:(NSArray *)fonts sender:(id)sender;
+-(void)changedFonts:(NSArray *)fonts sender:(id)sender;
 
 @end
 

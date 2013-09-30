@@ -10,9 +10,9 @@
 
 @interface SHXLocalFont : SHXFont
 
--(id) initWithBase:(NSString*)base relativePath:(NSString*) path;
+-(id) initWithBase:(NSString *)base relativePath:(NSString *)path hash:(NSNumber *)hash;
 
 @property (readonly) NSString *localPath;
--(NSUInteger) getFileSize;
+@property (readonly) NSNumber *theHash;
 
 @end

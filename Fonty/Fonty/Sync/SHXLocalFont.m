@@ -10,11 +10,12 @@
 
 @implementation SHXLocalFont
 
--(id) initWithBase:(NSString *)base relativePath:(NSString *)path
+-(id) initWithBase:(NSString *)base relativePath:(NSString *)path hash:(NSNumber *)hash
 {
     self = [super initWithRelativePath:path];
     
     self->_localPath = [NSString stringWithFormat:@"%@/%@", base, path];
+    self->_theHash = hash;
     
     return self;
 }
@@ -23,7 +24,7 @@
     NSUInteger hash = 0;
     hash += [[self relativePath] hash];
     
-    hash += [self getFileSize];
+    hash += [[self theHash] hash];
     
     return hash;
 }
@@ -33,13 +34,7 @@
         return YES;
     if (!other || ![other isKindOfClass:[SHXLocalFont class]])
         return NO;
-    return [[self relativePath] isEqual:[other relativePath]] && [self getFileSize] == [other getFileSize];
-}
-
-- (NSUInteger)getFileSize
-{
-    NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[self localPath] error: NULL];
-    return  (NSUInteger)[attrs fileSize];
+    return [[self relativePath] isEqual:[other relativePath]] && [[self theHash] isEqualToNumber:[other theHash]];
 }
 
 - (NSString *)description {
