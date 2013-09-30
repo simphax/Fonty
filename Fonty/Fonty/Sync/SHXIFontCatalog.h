@@ -11,11 +11,7 @@
 
 @protocol SHXIFontCatalogDelegate <NSObject>
 
--(void)deletedFonts:(NSArray *)fonts sender:(id)sender;
--(void)updatedFonts:(NSArray *)fonts sender:(id)sender;
-
--(void)disappearedFonts:(NSArray *)fonts sender:(id)sender;
--(void)changedFonts:(NSArray *)fonts sender:(id)sender;
+-(void)collectionChanged:(id)sender;
 
 @end
 
@@ -23,8 +19,8 @@
 
 -(NSArray *)allFonts;
 
--(void)updateFonts:(NSArray *)fonts;
--(void)deleteFonts:(NSArray *)fonts;
+-(BOOL)updateFont:(SHXFont *)font;
+-(BOOL)deleteFont:(SHXFont *)font;
 
 @property(nonatomic,assign)id<SHXIFontCatalogDelegate> delegate;
 

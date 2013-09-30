@@ -24,7 +24,7 @@
 -(NSArray *) activatedFonts;
 
 -(void) performMerge;
--(void) performHardFetch;
+-(void) performHardFetchFrom:(id <SHXIFontCatalog>)fromCatalog to:(id <SHXIFontCatalog>)toCatalog;
 
 @property(nonatomic,assign)id<SHXIFontManagerDelegate> delegate;
 
