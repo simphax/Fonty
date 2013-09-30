@@ -7,8 +7,9 @@
 //
 
 #import "SHXFolderFontCatalog.h"
-#import "SCEvents.h"
-#import "SCEvent.h"
+#import <CDEvents/CDEvent.h>
+#import <CDEvents/CDEvents.h>
+#import <CDEvents/CDEventsDelegate.h>
 #import "SHXLocalFont.h"
 #import "NSFileManager+DirectoryLocations.h"
 
@@ -17,11 +18,11 @@ static NSArray *AcceptedExtensions;
 static BOOL adding;
 static BOOL deleting;
 
-@interface SHXFolderFontCatalog() <SCEventListenerProtocol>
+@interface SHXFolderFontCatalog() <CDEventsDelegate>
 {
 @private
     NSString *_path;
-    SCEvents *_folderEvents;
+    CDEvents *_folderEvents;
     NSArray *_previousFileList;
 }
 
@@ -48,20 +49,66 @@ static BOOL deleting;
 
 - (void) setupFolderEventListenerOnPath:(NSString *)path {
     if (_folderEvents) return;
-	
-    _folderEvents = [[SCEvents alloc] init];
+    NSURL *url = [NSURL URLWithString:[self URLEncodeString:path]];
+    NSMutableArray *urls = [NSMutableArray arrayWithObject:url];
     
-    [_folderEvents setDelegate:self];
-    
-    NSMutableArray *paths = [NSMutableArray arrayWithObject:path];
-    
-	[_folderEvents startWatchingPaths:paths];
+    _folderEvents = [[CDEvents alloc] initWithURLs:urls delegate:self];
     
 	// Display a description of the stream
 	NSLog(@"Watching folder %@ %@", path, [_folderEvents streamDescription]);
 }
 
+-(NSString *) URLEncodeString:(NSString *) str
+{
+    
+    NSMutableString *tempStr = [NSMutableString stringWithString:str];
+    [tempStr replaceOccurrencesOfString:@" " withString:@"+" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [tempStr length])];
+    
+    
+    return [[NSString stringWithFormat:@"%@",tempStr] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
+#pragma mark CDEventsDelegate
+- (void)URLWatcher:(CDEvents *)urlWatcher eventOccurred:(CDEvent *)event
+{
+	NSLog(@"[Delegate] URLWatcher: %@\nEvent: %@", urlWatcher, event);
+    NSArray *newFileList = [self allFonts];
+    if(!(deleting || adding))
+    {
+        if(delegate){
+            
+            NSMutableArray *disappeared = [NSMutableArray arrayWithArray:_previousFileList];
+            NSMutableArray *changed = [NSMutableArray arrayWithArray:newFileList];
+            
+            for(SHXLocalFont *font in _previousFileList)
+            {
+                for(SHXLocalFont *current in newFileList)
+                {
+                    if([[current relativePath] isEqual:[font relativePath]])
+                    {
+                        [disappeared removeObject:font];
+                    }
+                }
+            }
+            
+            [changed removeObjectsInArray:_previousFileList];
+            
+            if([disappeared count])
+            {
+                [[self delegate] disappearedFonts:disappeared sender:self];
+            }
+            if([changed count])
+            {
+                [[self delegate] changedFonts:changed sender:self];
+            }
+        }
+    }
+    _previousFileList = newFileList;
+}
+
+
 #pragma mark SCEventListenerProtocol
+/*
 - (void)pathWatcher:(SCEvents *)pathWatcher eventOccurred:(SCEvent *)event
 {
     NSLog(@"Folder event: %@", event);
@@ -100,7 +147,7 @@ static BOOL deleting;
     }
     _previousFileList = newFileList;
 }
-
+*/
 #pragma mark SHXIFontCatalog
 
 -(NSArray *)allFonts{

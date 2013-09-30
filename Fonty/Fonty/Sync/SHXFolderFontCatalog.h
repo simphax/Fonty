@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "SHXIFontCatalog.h"
-#import "SCEventListenerProtocol.h"
 
 @interface SHXFolderFontCatalog : NSObject <SHXIFontCatalog>
 
