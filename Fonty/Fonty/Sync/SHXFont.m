@@ -16,7 +16,7 @@
     self->_relativePath = path;
     return self;
 }
-/*
+
 - (NSUInteger)hash {
     NSUInteger hash = 0;
     hash += [[self relativePath] hash];
@@ -33,6 +33,6 @@
         return NO;
     return [[self relativePath] isEqual:[other relativePath]];
 }
-*/
+
 
 @end

@@ -29,7 +29,8 @@
     [self setupLaunchAtLogin];
     
     SHXFolderFontCatalog *local = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
-    SHXFolderFontCatalog *remote = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty"]];
+    //SHXFolderFontCatalog *remote = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty"]];
+    SHXFolderFontCatalog *remote = [[SHXFolderFontCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/Fonts"]];
 
     _fontManager = [[SHXFontManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:[self isFirstTime]];
     
@@ -76,7 +77,7 @@
     
 }
 
--(void) deletedFonts:(NSArray *)fonts sender:(id)sender
+-(void) removedFonts:(NSArray *)fonts sender:(id)sender
 {
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"Fonty";

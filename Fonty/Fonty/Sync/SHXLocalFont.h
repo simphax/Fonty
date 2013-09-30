@@ -13,6 +13,6 @@
 -(id) initWithBase:(NSString*)base relativePath:(NSString*) path;
 
 @property (readonly) NSString *localPath;
--(NSNumber *) getFileSize;
+-(NSUInteger) getFileSize;
 
 @end

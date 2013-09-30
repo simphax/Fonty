@@ -14,7 +14,7 @@
 
 -(void) fontSyncingBegin:(id)sender;
 -(void) fontSyncingEnd:(id)sender;
--(void) deletedFonts:(NSArray *)fonts sender:(id)sender;
+-(void) removedFonts:(NSArray *)fonts sender:(id)sender;
 -(void) changedFonts:(NSArray *)fonts sender:(id)sender;
 
 @end
@@ -23,7 +23,7 @@
 
 -(NSArray *) activatedFonts;
 
--(void) performMerge;
+-(void) performMergeWith:(id <SHXIFontCatalog>)fromCatalog and:(id <SHXIFontCatalog>)toCatalog;
 -(void) performHardFetchFrom:(id <SHXIFontCatalog>)fromCatalog to:(id <SHXIFontCatalog>)toCatalog;
 
 @property(nonatomic,assign)id<SHXIFontManagerDelegate> delegate;

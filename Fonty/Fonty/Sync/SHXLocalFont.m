@@ -14,7 +14,6 @@
 {
     self = [super initWithRelativePath:path];
     
-    //TODO: Check path eligibility?
     self->_localPath = [NSString stringWithFormat:@"%@/%@", base, path];
     
     return self;
@@ -24,7 +23,7 @@
     NSUInteger hash = 0;
     hash += [[self relativePath] hash];
     
-    hash += [[self getFileSize] hash];
+    hash += [self getFileSize];
     
     return hash;
 }
@@ -34,13 +33,13 @@
         return YES;
     if (!other || ![other isKindOfClass:[SHXLocalFont class]])
         return NO;
-    return [[self relativePath] isEqual:[other relativePath]] && [[self getFileSize] isEqual:[other getFileSize]];
+    return [[self relativePath] isEqual:[other relativePath]] && [self getFileSize] == [other getFileSize];
 }
 
-- (NSNumber *)getFileSize
+- (NSUInteger)getFileSize
 {
     NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:[self localPath] error: NULL];
-    return [NSNumber numberWithUnsignedLongLong:(unsigned long long)[attrs fileSize]];
+    return  (NSUInteger)[attrs fileSize];
 }
 
 - (NSString *)description {

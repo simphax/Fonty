@@ -36,7 +36,7 @@
 
 - (IBAction)didPressSync:(id)sender
 {
-    [_fontManager performMerge];
+    //[_fontManager performMerge];
 }
 
 #pragma mark SHXIFontCatalogDelegate
