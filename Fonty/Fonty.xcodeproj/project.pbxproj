@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F42C9E4417FB081200191255 /* SHXLocalFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C9E4317FB081200191255 /* SHXLocalFileTest.m */; };
+		F42C9E5617FB11C700191255 /* LocalFileTest in Resources */ = {isa = PBXBuildFile; fileRef = F42C9E5517FB11C700191255 /* LocalFileTest */; };
 		F449CDAA17F7FDC40029ACE8 /* FontyIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F449CDA917F7FDC40029ACE8 /* FontyIcon.icns */; };
 		F44C926617F76CF8005A5F79 /* SHXLocalFolderCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926517F76CF8005A5F79 /* SHXLocalFolderCatalog.m */; };
 		F44C926917F76D8E005A5F79 /* SHXSyncingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926817F76D8E005A5F79 /* SHXSyncingManager.m */; };
@@ -65,6 +67,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F42C9E4217FB081200191255 /* SHXLocalFileTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXLocalFileTest.h; path = Sync/SHXLocalFileTest.h; sourceTree = "<group>"; };
+		F42C9E4317FB081200191255 /* SHXLocalFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXLocalFileTest.m; path = Sync/SHXLocalFileTest.m; sourceTree = "<group>"; };
+		F42C9E5517FB11C700191255 /* LocalFileTest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LocalFileTest; path = Resources/LocalFileTest; sourceTree = "<group>"; };
 		F449CDA917F7FDC40029ACE8 /* FontyIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = FontyIcon.icns; sourceTree = "<group>"; };
 		F44C925E17F75466005A5F79 /* SHXICatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXICatalog.h; path = Sync/SHXICatalog.h; sourceTree = "<group>"; };
 		F44C926417F76CF8005A5F79 /* SHXLocalFolderCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SHXLocalFolderCatalog.h; path = Sync/SHXLocalFolderCatalog.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -142,6 +147,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F42C9E4617FB10F800191255 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F42C9E5517FB11C700191255 /* LocalFileTest */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		F44C925A17F750EC005A5F79 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */,
+				F42C9E4217FB081200191255 /* SHXLocalFileTest.h */,
+				F42C9E4317FB081200191255 /* SHXLocalFileTest.m */,
 			);
 			name = Sync;
 			sourceTree = "<group>";
@@ -242,6 +257,7 @@
 		F44FCB4817F73D5C006DD0BA /* FontyTests */ = {
 			isa = PBXGroup;
 			children = (
+				F42C9E4617FB10F800191255 /* Resources */,
 				F44C926D17F76F88005A5F79 /* Sync */,
 				F44FCB4917F73D5C006DD0BA /* Supporting Files */,
 			);
@@ -424,6 +440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F42C9E5617FB11C700191255 /* LocalFileTest in Resources */,
 				F44FCB4D17F73D5C006DD0BA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F44C926C17F76F82005A5F79 /* SHXFolderFontCatalogTest.m in Sources */,
+				F42C9E4417FB081200191255 /* SHXLocalFileTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
