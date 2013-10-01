@@ -10,9 +10,9 @@
 
 @interface SHXLocalFile : SHXFile
 
--(id) initWithBase:(NSString *)base relativePath:(NSString *)path hash:(NSNumber *)hash;
+-(id) initWithBase:(NSString *)base relativePath:(NSString *)path;
 
 @property (readonly) NSString *localPath;
-@property (readonly) NSNumber *theHash;
+@property (readonly) NSString *MD5;
 
 @end

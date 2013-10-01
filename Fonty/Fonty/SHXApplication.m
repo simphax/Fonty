@@ -17,7 +17,8 @@
 {
     @private
     SHXStatusView *_statusView;
-    id <SHXISyncingManager> _fileManager;
+    id <SHXISyncingManager> _fontSyncingManager;
+    id <SHXISyncingManager> _fontCollectionsSyncingManager;
     //unsigned long _totalAddedFiles;
 }
 @end
@@ -28,10 +29,17 @@
 {
     [self setupLaunchAtLogin];
     
-    SHXLocalFolderCatalog *local = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
-    SHXLocalFolderCatalog *remote = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty"]];
+    BOOL isFirstTime = [self isFirstTime];
+    
+    BOOL folderCreated = [[NSFileManager defaultManager] createDirectoryAtPath:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty" withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    SHXLocalFolderCatalog *localFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
+    SHXLocalFolderCatalog *remoteFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty/Fonts"]];
+    _fontSyncingManager = [[SHXSyncingManager alloc] initWithCatalog:localFonts andCatalog:remoteFonts withDelegate:self asFirstTime:isFirstTime];
 
-    _fileManager = [[SHXSyncingManager alloc] initWithCatalog:local andCatalog:remote withDelegate:self asFirstTime:[self isFirstTime]];
+    SHXLocalFolderCatalog *localFontCollections = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/FontCollections"]];
+    SHXLocalFolderCatalog *remoteFontCollections = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty/FontCollections"]];
+    _fontCollectionsSyncingManager = [[SHXSyncingManager alloc] initWithCatalog:localFontCollections andCatalog:remoteFontCollections withDelegate:self asFirstTime:isFirstTime];
     
     _statusView = [[SHXStatusView alloc] init];
     

@@ -35,11 +35,11 @@
 {
     self = [super init];
     
-    NSLog(@"Creating folder %@: %hhd",path,[_fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil]);
-    
     _path = path;
     
     _fileManager = [[NSFileManager alloc] init];
+    
+    NSLog(@"Creating folder %@: %hhd",path,[_fileManager createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil]);
     
     _previousFileList = [self allFiles];
     
@@ -66,7 +66,7 @@
 
 -(NSString *) myPathWithFile:(NSString *)file
 {
-    return [NSString stringWithFormat:@"%@/%@",_path,file];
+    return [_path stringByAppendingPathComponent:file];
 }
 
 -(NSString *) URLEncodeString:(NSString *) str
@@ -127,11 +127,8 @@
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for(NSString *aFile in allFiles){
         if([self isIncompleteFile:[self myPathWithFile:aFile]])//Do not add to the list if it seems incomplete (we are probably copying or downloading the file from somewhere)
-        {
-            NSDictionary *attrs = [_fileManager attributesOfItemAtPath:aFile error: NULL];
-            NSNumber *hash = [NSNumber numberWithUnsignedLongLong:[attrs fileSize]];
-            
-            [result addObject:[[SHXLocalFile alloc] initWithBase:_path relativePath:aFile hash:hash]];
+        {   
+            [result addObject:[[SHXLocalFile alloc] initWithBase:_path relativePath:aFile]];
         }
     }
     return result;
@@ -145,7 +142,7 @@
         _updating = TRUE;
         SHXLocalFile *localFile = (SHXLocalFile *)file;
         NSLog(@"Copy %@ to %@",[localFile localPath],[self myPathWithFile:[file relativePath]]);
-        BOOL rem = [_fileManager removeItemAtPath:[self myPathWithFile:[file relativePath]] error:nil];
+        [_fileManager removeItemAtPath:[self myPathWithFile:[file relativePath]] error:nil];
         BOOL result = [_fileManager copyItemAtPath:[localFile localPath] toPath:[self myPathWithFile:[file relativePath]] error:nil];
         _previousFileList = [self allFiles];
         _updating = FALSE;
@@ -161,7 +158,7 @@
         _deleting = TRUE;
         SHXLocalFile *localFile = (SHXLocalFile *)file;
         NSLog(@"Move to trash %@",[localFile localPath]);
-        NSURL* url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",_path,[file relativePath]]];
+        NSURL* url = [NSURL fileURLWithPath:[self myPathWithFile:[file relativePath]]];
         BOOL result = [_fileManager trashItemAtURL:url resultingItemURL:nil error:nil];
         _previousFileList = [self allFiles];
         _deleting = FALSE;

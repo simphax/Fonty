@@ -7,15 +7,20 @@
 //
 
 #import "SHXLocalFile.h"
+#import "NSData+MD5.h"
 
 @implementation SHXLocalFile
 
--(id) initWithBase:(NSString *)base relativePath:(NSString *)path hash:(NSNumber *)hash
+-(id) initWithBase:(NSString *)base relativePath:(NSString *)path
 {
     self = [super initWithRelativePath:path];
     
-    self->_localPath = [NSString stringWithFormat:@"%@/%@", base, path];
-    self->_theHash = hash;
+    _localPath = [base stringByAppendingPathComponent:path];
+    
+    NSData *nsData = [NSData dataWithContentsOfFile:_localPath];
+    
+    _MD5 = [nsData MD5];
+    
     
     return self;
 }
@@ -24,7 +29,7 @@
     NSUInteger hash = 0;
     hash += [[self relativePath] hash];
     
-    hash += [[self theHash] hash];
+    hash += [[self MD5] hash];
     
     return hash;
 }
@@ -34,7 +39,7 @@
         return YES;
     if (!other || ![other isKindOfClass:[SHXLocalFile class]])
         return NO;
-    return [[self relativePath] isEqual:[other relativePath]] && [[self theHash] isEqualToNumber:[other theHash]];
+    return [[self relativePath] isEqual:[other relativePath]] && [[self MD5] isEqual:[other MD5]];
 }
 
 - (NSString *)description {
