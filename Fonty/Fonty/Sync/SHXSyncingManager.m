@@ -173,25 +173,28 @@
 
 -(void)disappearedFiles:(NSArray *)files sender:(id)sender
 {
-    @synchronized([SHXSharedLock sharedSyncLock])
+    @autoreleasepool
     {
-        if([files count])
+        @synchronized([SHXSharedLock sharedSyncLock])
         {
-            id <SHXICatalog> toBeSynced = sender == _localFileCatalog ? _remoteFileCatalog : _localFileCatalog;
-            
-            for(SHXFile *file in files)
+            if([files count])
             {
-                if(![toBeSynced deleteFile:file])
+                id <SHXICatalog> toBeSynced = sender == _localFileCatalog ? _remoteFileCatalog : _localFileCatalog;
+                
+                for(SHXFile *file in files)
                 {
-                    NSLog(@"Could not delete file %@ in %@",file,toBeSynced);
+                    if(![toBeSynced deleteFile:file])
+                    {
+                        NSLog(@"Could not delete file %@ in %@",file,toBeSynced);
+                    }
                 }
-            }
-            
-            if(toBeSynced == _localFileCatalog)
-            {
-                if(_delegate)
+                
+                if(toBeSynced == _localFileCatalog)
                 {
-                    [[self delegate] removedFiles:files sender:self];
+                    if(_delegate)
+                    {
+                        [[self delegate] removedFiles:files sender:self];
+                    }
                 }
             }
         }
@@ -200,28 +203,31 @@
 
 -(void)changedFiles:(NSArray *)files sender:(id)sender
 {
-    @synchronized([SHXSharedLock sharedSyncLock])
+    @autoreleasepool
     {
-        if([files count])
+        @synchronized([SHXSharedLock sharedSyncLock])
         {
-            id <SHXICatalog> toBeSynced = sender == _localFileCatalog ? _remoteFileCatalog : _localFileCatalog;
-            for(SHXFile *file in files)
+            if([files count])
             {
-                int retries = COPY_FONT_RETRIES;
-                while(retries > 0 && ![toBeSynced updateFile:file])
+                id <SHXICatalog> toBeSynced = sender == _localFileCatalog ? _remoteFileCatalog : _localFileCatalog;
+                for(SHXFile *file in files)
                 {
-                    NSLog(@"Could not copy file %@ to %@ - Retrying...",file,toBeSynced);
-                    [NSThread sleepForTimeInterval:0.01f];//Wait 0.01 seconds before retrying (this will halt the thread)
-                    retries--;
+                    int retries = COPY_FONT_RETRIES;
+                    while(retries > 0 && ![toBeSynced updateFile:file])
+                    {
+                        NSLog(@"Could not copy file %@ to %@ - Retrying...",file,toBeSynced);
+                        [NSThread sleepForTimeInterval:0.01f];//Wait 0.01 seconds before retrying (this will halt the thread)
+                        retries--;
+                    }
+                    
                 }
                 
-            }
-            
-            if(toBeSynced == _localFileCatalog)
-            {
-                if(_delegate)
+                if(toBeSynced == _localFileCatalog)
                 {
-                    [[self delegate] changedFiles:files sender:self];
+                    if(_delegate)
+                    {
+                        [[self delegate] changedFiles:files sender:self];
+                    }
                 }
             }
         }

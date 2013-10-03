@@ -42,7 +42,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2013 Simphax. All rights reserved.</string>
 	<key>NSMainNibFile</key>
-	<string>Application</string>
+	<string>TestApplication</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

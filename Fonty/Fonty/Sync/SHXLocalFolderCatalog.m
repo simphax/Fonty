@@ -66,7 +66,7 @@
 
 -(NSString *) myPathWithFile:(NSString *)file
 {
-    return [_path stringByAppendingPathComponent:file];
+    return [NSString stringWithString:[_path stringByAppendingPathComponent:file]];
 }
 
 -(NSString *) URLEncodeString:(NSString *) str
@@ -84,38 +84,42 @@
 #pragma mark CDEventsDelegate
 - (void)URLWatcher:(CDEvents *)urlWatcher eventOccurred:(CDEvent *)event
 {
-    @synchronized([SHXSharedLock sharedSyncLock])
+    @autoreleasepool
     {
-        NSArray *newFileList = [self allFiles];
-        NSLog(@"Path %@ changed",_path);
-        if(_delegate){
-            
-            NSMutableArray *disappeared = [NSMutableArray arrayWithArray:_previousFileList];
-            NSMutableArray *changed = [NSMutableArray arrayWithArray:newFileList];
-            
-            [changed removeObjectsInArray:_previousFileList];
-            
-            for(SHXLocalFile *file in [disappeared copy])
-            {
-                for(SHXLocalFile *current in newFileList)
+        @synchronized([SHXSharedLock sharedSyncLock])
+        {
+            NSArray *newFileList = [self allFiles];
+            NSLog(@"Path %@ changed",_path);
+            if(_delegate){
+                
+                NSMutableArray *disappeared = [NSMutableArray arrayWithArray:_previousFileList];
+                NSMutableArray *changed = [NSMutableArray arrayWithArray:newFileList];
+                
+                [changed removeObjectsInArray:_previousFileList];
+                
+                for(SHXLocalFile *file in [disappeared copy])
                 {
-                    if([[current relativePath] isEqual:[file relativePath]])
+                    for(SHXLocalFile *current in newFileList)
                     {
-                        [disappeared removeObject:file];
+                        if([[current relativePath] isEqual:[file relativePath]])
+                        {
+                            [disappeared removeObject:file];
+                        }
                     }
                 }
+                
+                if([changed count])
+                {
+                    [[self delegate] changedFiles:changed sender:self];
+                }
+                if([disappeared count])
+                {
+                    [[self delegate] disappearedFiles:disappeared sender:self];
+                }
             }
-            
-            if([changed count])
-            {
-                [[self delegate] changedFiles:changed sender:self];
-            }
-            if([disappeared count])
-            {
-                [[self delegate] disappearedFiles:disappeared sender:self];
-            }
+            _previousFileList = nil;
+            _previousFileList = newFileList;
         }
-        _previousFileList = newFileList;
     }
 }
 
@@ -127,8 +131,12 @@
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for(NSString *aFile in allFiles){
         if([self isIncompleteFile:[self myPathWithFile:aFile]])//Do not add to the list if it seems incomplete (we are probably copying or downloading the file from somewhere)
-        {   
-            [result addObject:[[SHXLocalFile alloc] initWithBase:_path relativePath:aFile]];
+        {
+            @autoreleasepool
+            {
+                SHXLocalFile *fileToAdd = [[SHXLocalFile alloc] initWithBase:_path relativePath:aFile];
+                [result addObject:fileToAdd];
+            }
         }
     }
     return result;
@@ -144,6 +152,7 @@
         NSLog(@"Copy %@ to %@",[localFile localPath],[self myPathWithFile:[file relativePath]]);
         [_fileManager removeItemAtPath:[self myPathWithFile:[file relativePath]] error:nil];
         BOOL result = [_fileManager copyItemAtPath:[localFile localPath] toPath:[self myPathWithFile:[file relativePath]] error:nil];
+        _previousFileList = nil;
         _previousFileList = [self allFiles];
         _updating = FALSE;
         return result;
@@ -160,6 +169,7 @@
         NSLog(@"Move to trash %@",[localFile localPath]);
         NSURL* url = [NSURL fileURLWithPath:[self myPathWithFile:[file relativePath]]];
         BOOL result = [_fileManager trashItemAtURL:url resultingItemURL:nil error:nil];
+        _previousFileList = nil;
         _previousFileList = [self allFiles];
         _deleting = FALSE;
         return result;
