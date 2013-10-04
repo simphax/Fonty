@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F42C9E4417FB081200191255 /* SHXLocalFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C9E4317FB081200191255 /* SHXLocalFileTest.m */; };
 		F42C9E5617FB11C700191255 /* LocalFileTest in Resources */ = {isa = PBXBuildFile; fileRef = F42C9E5517FB11C700191255 /* LocalFileTest */; };
-		F449CDAA17F7FDC40029ACE8 /* FontyIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F449CDA917F7FDC40029ACE8 /* FontyIcon.icns */; };
 		F44C926617F76CF8005A5F79 /* SHXLocalFolderCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926517F76CF8005A5F79 /* SHXLocalFolderCatalog.m */; };
 		F44C926917F76D8E005A5F79 /* SHXSyncingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926817F76D8E005A5F79 /* SHXSyncingManager.m */; };
 		F44C926C17F76F82005A5F79 /* SHXFolderFontCatalogTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */; };
@@ -25,6 +24,7 @@
 		F4A2AEBD17F9DB13004BECF8 /* CDEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A2AEBC17F9DB12004BECF8 /* CDEvents.framework */; };
 		F4A2AEBE17F9DB4D004BECF8 /* CDEvents.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F4A2AEBC17F9DB12004BECF8 /* CDEvents.framework */; };
 		F4A2AEC317FA2249004BECF8 /* SHXSharedLock.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A2AEC217FA2249004BECF8 /* SHXSharedLock.m */; };
+		F4B3136217FF7B42009F8B2C /* fonty.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F4B3136117FF7B42009F8B2C /* fonty.iconset */; };
 		F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */; };
 		F4C1ACF917F7966D006107D3 /* TestApplication.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C1ACF717F7966D006107D3 /* TestApplication.xib */; };
 		F4C1ACFC17F79D5B006107D3 /* SHXFile.m in Sources */ = {isa = PBXBuildFile; fileRef = F4C1ACFB17F79D5B006107D3 /* SHXFile.m */; };
@@ -69,7 +69,6 @@
 		F42C9E4217FB081200191255 /* SHXLocalFileTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXLocalFileTest.h; path = Sync/SHXLocalFileTest.h; sourceTree = "<group>"; };
 		F42C9E4317FB081200191255 /* SHXLocalFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXLocalFileTest.m; path = Sync/SHXLocalFileTest.m; sourceTree = "<group>"; };
 		F42C9E5517FB11C700191255 /* LocalFileTest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LocalFileTest; path = Resources/LocalFileTest; sourceTree = "<group>"; };
-		F449CDA917F7FDC40029ACE8 /* FontyIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = FontyIcon.icns; sourceTree = "<group>"; };
 		F44C925E17F75466005A5F79 /* SHXICatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXICatalog.h; path = Sync/SHXICatalog.h; sourceTree = "<group>"; };
 		F44C926417F76CF8005A5F79 /* SHXLocalFolderCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SHXLocalFolderCatalog.h; path = Sync/SHXLocalFolderCatalog.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F44C926517F76CF8005A5F79 /* SHXLocalFolderCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SHXLocalFolderCatalog.m; path = Sync/SHXLocalFolderCatalog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -96,6 +95,7 @@
 		F4A2AEBC17F9DB12004BECF8 /* CDEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CDEvents.framework; path = ../CDEvents.framework; sourceTree = "<group>"; };
 		F4A2AEBF17FA1EF3004BECF8 /* SHXSharedLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXSharedLock.h; path = Sync/SHXSharedLock.h; sourceTree = "<group>"; };
 		F4A2AEC217FA2249004BECF8 /* SHXSharedLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXSharedLock.m; path = Sync/SHXSharedLock.m; sourceTree = "<group>"; };
+		F4B3136117FF7B42009F8B2C /* fonty.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = fonty.iconset; sourceTree = "<group>"; };
 		F4C1ACF517F7966D006107D3 /* SHXTestingAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXTestingAppDelegate.h; path = Tests/SHXTestingAppDelegate.h; sourceTree = "<group>"; };
 		F4C1ACF617F7966D006107D3 /* SHXTestingAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SHXTestingAppDelegate.m; path = Tests/SHXTestingAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F4C1ACF717F7966D006107D3 /* TestApplication.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestApplication.xib; path = Tests/TestApplication.xib; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		F44FCB1817F73D5C006DD0BA = {
 			isa = PBXGroup;
 			children = (
-				F449CDA917F7FDC40029ACE8 /* FontyIcon.icns */,
+				F4B3136117FF7B42009F8B2C /* fonty.iconset */,
 				F44FCB2A17F73D5C006DD0BA /* Fonty */,
 				F44FCB4817F73D5C006DD0BA /* FontyTests */,
 				F44FCB2317F73D5C006DD0BA /* Frameworks */,
@@ -417,10 +417,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4B3136217FF7B42009F8B2C /* fonty.iconset in Resources */,
 				F4C1AD7217F7E8BE006107D3 /* statusbar-white.png in Resources */,
 				F4C1AD7717F7EF78006107D3 /* statusbar-black@2x.png in Resources */,
 				F44FCB2F17F73D5C006DD0BA /* InfoPlist.strings in Resources */,
-				F449CDAA17F7FDC40029ACE8 /* FontyIcon.icns in Resources */,
 				F4C1AD7117F7E8BE006107D3 /* statusbar-black.png in Resources */,
 				F4C1AD6417F7E43A006107D3 /* PopoverView.xib in Resources */,
 				F4C1AD7817F7EF78006107D3 /* statusbar-white@2x.png in Resources */,
