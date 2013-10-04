@@ -23,6 +23,6 @@
 -(BOOL)updateFile:(SHXFile *)file;
 -(BOOL)deleteFile:(SHXFile *)file;
 
-@property(nonatomic,assign)id<SHXICatalogDelegate> delegate;
+@property (unsafe_unretained) id<SHXICatalogDelegate> delegate;
 
 @end

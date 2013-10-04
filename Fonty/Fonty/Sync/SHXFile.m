@@ -12,8 +12,7 @@
 
 -(id) initWithRelativePath:(NSString *)path
 {
-    self = [super init];
-    _relativePath = [NSString stringWithString:path];
+    _relativePath = [[NSString alloc] initWithString:path];
     return self;
 }
 

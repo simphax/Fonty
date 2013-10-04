@@ -78,11 +78,16 @@
 
 -(BOOL) isIncompleteFile:(NSString *)path
 {
-    NSDictionary *attrs = [_fileManager attributesOfItemAtPath:path error: NULL];
-    return [[attrs fileCreationDate] timeIntervalSince1970] > 0;
+    BOOL result = false;
+    @autoreleasepool
+    {
+        NSDictionary *attrs = [_fileManager attributesOfItemAtPath:path error: NULL];
+        result = [[attrs fileCreationDate] timeIntervalSince1970] > 0;
+    }
+    return result;
 }
 
--(void) handleFolderEvent:(CDEvent *)event
+-(void) findNewFolderEvents
 {
     @synchronized([SHXSharedLock sharedSyncLock])
     {
@@ -123,10 +128,9 @@
 #pragma mark CDEventsDelegate
 - (void)URLWatcher:(CDEvents *)urlWatcher eventOccurred:(CDEvent *)event
 {
-    NSLog(@"Is main thread: %hhd",[NSThread isMainThread]);
     dispatch_async(dispatch_get_main_queue(), ^{
 
-        [self handleFolderEvent:event];
+        [self findNewFolderEvents];
         
     });
 }
@@ -141,16 +145,19 @@
         NSArray *allFiles = [_fileManager contentsOfDirectoryAtPath:_path error:nil];
         NSMutableArray *result = [[NSMutableArray alloc] init];
         for(NSString *aFile in allFiles){
-            if([self isIncompleteFile:[self myPathWithFile:aFile]])//Do not add to the list if it seems incomplete (we are probably copying or downloading the file from somewhere)
+            if([self isIncompleteFile:[self myPathWithFile:[aFile copy]]])//Do not add to the list if it seems incomplete (we are probably copying or downloading the file from somewhere)
             {
                 @autoreleasepool
                 {
-                    SHXLocalFile *fileToAdd = [[SHXLocalFile alloc] initWithBase:_path relativePath:aFile];
+                    SHXLocalFile *fileToAdd = [[SHXLocalFile alloc] initWithBase:[_path copy] relativePath:[aFile copy]];
                     [result addObject:fileToAdd];
                 }
             }
         }
-        _allFiles = [NSArray arrayWithArray:result];
+        _allFiles = [result copy];
+        [result removeAllObjects];
+        result = nil;
+        allFiles = nil;
     }
     return _allFiles;
 }

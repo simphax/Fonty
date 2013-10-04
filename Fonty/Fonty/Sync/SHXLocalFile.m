@@ -17,8 +17,8 @@
     
     @autoreleasepool
     {
-    _localPath = [base stringByAppendingPathComponent:path];
-    _MD5 =[[NSData dataWithContentsOfFile:_localPath] MD5];
+        _localPath = [[NSString alloc] initWithFormat:@"%@/%@",base,path];
+        _MD5 = [[[NSData alloc] initWithContentsOfFile:_localPath] MD5];
     }
     
     return self;
@@ -47,7 +47,7 @@
 }
 
 - (NSString *)description {
-    return _localPath;
+    return [self localPath];
 }
 
 @end

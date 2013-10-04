@@ -31,10 +31,14 @@
     
     BOOL isFirstTime = [self isFirstTime];
     
-    BOOL folderCreated = [[NSFileManager defaultManager] createDirectoryAtPath:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty" withIntermediateDirectories:NO attributes:nil error:nil];
+    //TODO Create iCloud folder
     
     SHXLocalFolderCatalog *localFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
     SHXLocalFolderCatalog *remoteFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty/Fonts"]];
+    
+    //SHXLocalFolderCatalog *localFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesLocal"]];
+    //SHXLocalFolderCatalog *remoteFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesRemote"]];
+    
     _fontSyncingManager = [[SHXSyncingManager alloc] initWithCatalog:localFonts andCatalog:remoteFonts withDelegate:self asFirstTime:isFirstTime];
 
     SHXLocalFolderCatalog *localFontCollections = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/FontCollections"]];
