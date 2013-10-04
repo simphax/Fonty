@@ -13,6 +13,6 @@
 -(id) initWithBase:(NSString *)base relativePath:(NSString *)path;
 
 @property (readonly, copy) NSString *localPath;
-@property (readonly, copy) NSString *MD5;
+@property (readonly, copy) NSNumber *fileSize;
 
 @end
