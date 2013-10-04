@@ -14,6 +14,7 @@
 
 - (NSString*)MD5
 {
+    NSString *result = nil;
     @autoreleasepool
     {
         unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
@@ -26,9 +27,10 @@
         {
             [output appendFormat:@"%02x",md5Buffer[i]];
         }
-        
-        return output;
+        result = [NSString stringWithString:output];
     }
+    
+    return result;
 }
 
 @end

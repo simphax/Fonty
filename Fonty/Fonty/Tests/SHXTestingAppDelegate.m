@@ -33,16 +33,19 @@
      */
     
     _localCatalog = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesLocal"]];
-    _remoteCatalog = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesRemote"]];
+    //_remoteCatalog = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesRemote"]];
     
     
-    _fileManager = [[SHXSyncingManager alloc] initWithCatalog:_localCatalog andCatalog:_remoteCatalog withDelegate:self asFirstTime:YES];
+    //_fileManager = [[SHXSyncingManager alloc] initWithCatalog:_localCatalog andCatalog:_remoteCatalog withDelegate:self asFirstTime:YES];
     
 }
 
 - (IBAction)didPressSync:(id)sender
 {
-    _fileList = [_localCatalog allFiles];
+    for(int i=0; i<100; i++)
+    {
+        _fileList = [_localCatalog allFiles];
+    }
     //[_fileManager performMerge];
 }
 

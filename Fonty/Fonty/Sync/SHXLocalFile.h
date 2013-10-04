@@ -12,6 +12,7 @@
 
 -(id) initWithBase:(NSString *)base relativePath:(NSString *)path;
 
-@property (readonly, retain) NSString *localPath;
+@property (readonly) NSString *localPath;
+@property (readonly) NSString *MD5;
 
 @end

@@ -12,6 +12,6 @@
 
 -(id) initWithRelativePath:(NSString*) path;
 
-@property (readonly, retain) NSString *relativePath;
+@property (readonly,atomic) NSString *relativePath;
 
 @end

@@ -21,6 +21,7 @@
     CDEvents *_folderEvents;
     NSFileManager *_fileManager;
     NSArray *_previousFileList;
+    NSArray *_allFiles;
     BOOL _deleting;
     BOOL _updating;
 }
@@ -81,65 +82,77 @@
     return [[attrs fileCreationDate] timeIntervalSince1970] > 0;
 }
 
+-(void) handleFolderEvent:(CDEvent *)event
+{
+    @synchronized([SHXSharedLock sharedSyncLock])
+    {
+        NSArray *newFileList = [self allFiles];
+        NSLog(@"Path %@ changed",_path);
+        if(_delegate){
+            
+            NSMutableArray *disappeared = [NSMutableArray arrayWithArray:_previousFileList];
+            NSMutableArray *changed = [NSMutableArray arrayWithArray:newFileList];
+            
+            [changed removeObjectsInArray:_previousFileList];
+            
+            for(SHXLocalFile *file in [disappeared copy])
+            {
+                for(SHXLocalFile *current in newFileList)
+                {
+                    if([[current relativePath] isEqual:[file relativePath]])
+                    {
+                        [disappeared removeObject:file];
+                    }
+                }
+            }
+            
+            if([changed count])
+            {
+                [[self delegate] changedFiles:changed sender:self];
+            }
+            if([disappeared count])
+            {
+                [[self delegate] disappearedFiles:disappeared sender:self];
+            }
+        }
+        _previousFileList = nil;
+        _previousFileList = newFileList;
+    }
+}
+
 #pragma mark CDEventsDelegate
 - (void)URLWatcher:(CDEvents *)urlWatcher eventOccurred:(CDEvent *)event
 {
-    @autoreleasepool
-    {
-        @synchronized([SHXSharedLock sharedSyncLock])
-        {
-            NSArray *newFileList = [self allFiles];
-            NSLog(@"Path %@ changed",_path);
-            if(_delegate){
-                
-                NSMutableArray *disappeared = [NSMutableArray arrayWithArray:_previousFileList];
-                NSMutableArray *changed = [NSMutableArray arrayWithArray:newFileList];
-                
-                [changed removeObjectsInArray:_previousFileList];
-                
-                for(SHXLocalFile *file in [disappeared copy])
-                {
-                    for(SHXLocalFile *current in newFileList)
-                    {
-                        if([[current relativePath] isEqual:[file relativePath]])
-                        {
-                            [disappeared removeObject:file];
-                        }
-                    }
-                }
-                
-                if([changed count])
-                {
-                    [[self delegate] changedFiles:changed sender:self];
-                }
-                if([disappeared count])
-                {
-                    [[self delegate] disappearedFiles:disappeared sender:self];
-                }
-            }
-            _previousFileList = nil;
-            _previousFileList = newFileList;
-        }
-    }
+    NSLog(@"Is main thread: %hhd",[NSThread isMainThread]);
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        [self handleFolderEvent:event];
+        
+    });
 }
 
 #pragma mark SHXICatalog
 
 -(NSArray *)allFiles
 {
-    NSArray *allFiles = [_fileManager contentsOfDirectoryAtPath:_path error:nil];
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for(NSString *aFile in allFiles){
-        if([self isIncompleteFile:[self myPathWithFile:aFile]])//Do not add to the list if it seems incomplete (we are probably copying or downloading the file from somewhere)
-        {
-            @autoreleasepool
+    _allFiles = nil;
+    @autoreleasepool
+    {
+        NSArray *allFiles = [_fileManager contentsOfDirectoryAtPath:_path error:nil];
+        NSMutableArray *result = [[NSMutableArray alloc] init];
+        for(NSString *aFile in allFiles){
+            if([self isIncompleteFile:[self myPathWithFile:aFile]])//Do not add to the list if it seems incomplete (we are probably copying or downloading the file from somewhere)
             {
-                SHXLocalFile *fileToAdd = [[SHXLocalFile alloc] initWithBase:_path relativePath:aFile];
-                [result addObject:fileToAdd];
+                @autoreleasepool
+                {
+                    SHXLocalFile *fileToAdd = [[SHXLocalFile alloc] initWithBase:_path relativePath:aFile];
+                    [result addObject:fileToAdd];
+                }
             }
         }
+        _allFiles = [NSArray arrayWithArray:result];
     }
-    return result;
+    return _allFiles;
 }
 
 -(BOOL)updateFile:(SHXFile *)file
