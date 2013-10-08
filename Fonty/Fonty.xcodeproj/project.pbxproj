@@ -69,6 +69,7 @@
 		F42C9E4217FB081200191255 /* SHXLocalFileTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXLocalFileTest.h; path = Sync/SHXLocalFileTest.h; sourceTree = "<group>"; };
 		F42C9E4317FB081200191255 /* SHXLocalFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXLocalFileTest.m; path = Sync/SHXLocalFileTest.m; sourceTree = "<group>"; };
 		F42C9E5517FB11C700191255 /* LocalFileTest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LocalFileTest; path = Resources/LocalFileTest; sourceTree = "<group>"; };
+		F432BDE218048D130086E664 /* Fonty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Fonty.entitlements; sourceTree = "<group>"; };
 		F44C925E17F75466005A5F79 /* SHXICatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXICatalog.h; path = Sync/SHXICatalog.h; sourceTree = "<group>"; };
 		F44C926417F76CF8005A5F79 /* SHXLocalFolderCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SHXLocalFolderCatalog.h; path = Sync/SHXLocalFolderCatalog.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F44C926517F76CF8005A5F79 /* SHXLocalFolderCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SHXLocalFolderCatalog.m; path = Sync/SHXLocalFolderCatalog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -226,6 +227,7 @@
 		F44FCB2A17F73D5C006DD0BA /* Fonty */ = {
 			isa = PBXGroup;
 			children = (
+				F432BDE218048D130086E664 /* Fonty.entitlements */,
 				F4C1AD6517F7E5AF006107D3 /* Assets */,
 				F4C1ACEA17F795F5006107D3 /* External Code */,
 				F4C1ACF417F79663006107D3 /* Manual Tests */,
@@ -388,6 +390,17 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Simphax;
 				TargetAttributes = {
+					F44FCB2017F73D5C006DD0BA = {
+						DevelopmentTeam = 8F732M5KXK;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
 					F44FCB4117F73D5C006DD0BA = {
 						TestTargetID = F44FCB2017F73D5C006DD0BA;
 					};
@@ -580,6 +593,9 @@
 		F44FCB5317F73D5C006DD0BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Fonty/Fonty.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -590,6 +606,7 @@
 				GCC_PREFIX_HEADER = "Fonty/Fonty-Prefix.pch";
 				INFOPLIST_FILE = "Fonty/Fonty-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -597,6 +614,9 @@
 		F44FCB5417F73D5C006DD0BA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Fonty/Fonty.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -607,6 +627,7 @@
 				GCC_PREFIX_HEADER = "Fonty/Fonty-Prefix.pch";
 				INFOPLIST_FILE = "Fonty/Fonty-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

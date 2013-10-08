@@ -33,17 +33,17 @@
     
     //TODO Create iCloud folder
     
-    SHXLocalFolderCatalog *localFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
-    SHXLocalFolderCatalog *remoteFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty/Fonts"]];
+    //SHXLocalFolderCatalog *localFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Fonts"]];
+    //SHXLocalFolderCatalog *remoteFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty/Fonts"]];
     
-    //SHXLocalFolderCatalog *localFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesLocal"]];
-    //SHXLocalFolderCatalog *remoteFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesRemote"]];
+    SHXLocalFolderCatalog *localFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesLocal"]];
+    SHXLocalFolderCatalog *remoteFonts = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Desktop/FilesRemote"]];
     
     _fontSyncingManager = [[SHXSyncingManager alloc] initWithCatalog:localFonts andCatalog:remoteFonts withDelegate:self asFirstTime:isFirstTime];
 
-    SHXLocalFolderCatalog *localFontCollections = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/FontCollections"]];
-    SHXLocalFolderCatalog *remoteFontCollections = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty/FontCollections"]];
-    _fontCollectionsSyncingManager = [[SHXSyncingManager alloc] initWithCatalog:localFontCollections andCatalog:remoteFontCollections withDelegate:self asFirstTime:isFirstTime];
+    //SHXLocalFolderCatalog *localFontCollections = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/FontCollections"]];
+    //SHXLocalFolderCatalog *remoteFontCollections = [[SHXLocalFolderCatalog alloc] initWithFolder:[NSHomeDirectory() stringByAppendingString:@"/Library/Mobile Documents/8F732M5KXK~com~simphax~Fonty/FontCollections"]];
+    //_fontCollectionsSyncingManager = [[SHXSyncingManager alloc] initWithCatalog:localFontCollections andCatalog:remoteFontCollections withDelegate:self asFirstTime:isFirstTime];
     
     _statusView = [[SHXStatusView alloc] init];
     
