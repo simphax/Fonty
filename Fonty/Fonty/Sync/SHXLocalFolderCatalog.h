@@ -13,4 +13,7 @@
 
 -(id) initWithFolder:(NSString *)path;
 
+-(void) performMergeWith:(id <SHXICatalog>)fromCatalog and:(id <SHXICatalog>)toCatalog;
+-(void) performHardFetchFrom:(id <SHXICatalog>)fromCatalog to:(id <SHXICatalog>)toCatalog;
+
 @end

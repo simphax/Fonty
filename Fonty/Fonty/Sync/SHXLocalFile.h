@@ -15,4 +15,6 @@
 @property (readonly, copy) NSString *localPath;
 @property (readonly, copy) NSNumber *fileSize;
 
+@property (readonly, copy) NSURL *URL;
+
 @end

@@ -54,6 +54,16 @@
     return [_localFileCatalog allFiles];
 }
 
+-(void) performMerge
+{
+    [self performMergeWith:_remoteFileCatalog and:_localFileCatalog];
+}
+
+-(void) performHardFetch
+{
+    [self performHardFetchFrom:_remoteFileCatalog to:_localFileCatalog];
+}
+
 -(void) performMergeWith:(id <SHXICatalog>)fromCatalog and:(id <SHXICatalog>)toCatalog
 {
     if(_delegate)

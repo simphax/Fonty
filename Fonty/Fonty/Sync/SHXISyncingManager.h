@@ -23,8 +23,8 @@
 
 -(NSArray *) activatedFiles;
 
--(void) performMergeWith:(id <SHXICatalog>)fromCatalog and:(id <SHXICatalog>)toCatalog;
--(void) performHardFetchFrom:(id <SHXICatalog>)fromCatalog to:(id <SHXICatalog>)toCatalog;
+-(void) performMerge;
+-(void) performHardFetch;
 
 @property(nonatomic,assign)id<SHXISyncingManagerDelegate> delegate;
 

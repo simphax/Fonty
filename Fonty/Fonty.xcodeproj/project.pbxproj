@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F42C9E4417FB081200191255 /* SHXLocalFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C9E4317FB081200191255 /* SHXLocalFileTest.m */; };
 		F42C9E5617FB11C700191255 /* LocalFileTest in Resources */ = {isa = PBXBuildFile; fileRef = F42C9E5517FB11C700191255 /* LocalFileTest */; };
+		F432BDE518049AA00086E664 /* SHXAppleCloudSyncingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F432BDE418049AA00086E664 /* SHXAppleCloudSyncingManager.m */; };
 		F44C926617F76CF8005A5F79 /* SHXLocalFolderCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926517F76CF8005A5F79 /* SHXLocalFolderCatalog.m */; };
 		F44C926917F76D8E005A5F79 /* SHXSyncingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926817F76D8E005A5F79 /* SHXSyncingManager.m */; };
 		F44C926C17F76F82005A5F79 /* SHXFolderFontCatalogTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C926B17F76F82005A5F79 /* SHXFolderFontCatalogTest.m */; };
@@ -70,6 +71,8 @@
 		F42C9E4317FB081200191255 /* SHXLocalFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXLocalFileTest.m; path = Sync/SHXLocalFileTest.m; sourceTree = "<group>"; };
 		F42C9E5517FB11C700191255 /* LocalFileTest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LocalFileTest; path = Resources/LocalFileTest; sourceTree = "<group>"; };
 		F432BDE218048D130086E664 /* Fonty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Fonty.entitlements; sourceTree = "<group>"; };
+		F432BDE318049AA00086E664 /* SHXAppleCloudSyncingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXAppleCloudSyncingManager.h; path = Sync/SHXAppleCloudSyncingManager.h; sourceTree = "<group>"; };
+		F432BDE418049AA00086E664 /* SHXAppleCloudSyncingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHXAppleCloudSyncingManager.m; path = Sync/SHXAppleCloudSyncingManager.m; sourceTree = "<group>"; };
 		F44C925E17F75466005A5F79 /* SHXICatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHXICatalog.h; path = Sync/SHXICatalog.h; sourceTree = "<group>"; };
 		F44C926417F76CF8005A5F79 /* SHXLocalFolderCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SHXLocalFolderCatalog.h; path = Sync/SHXLocalFolderCatalog.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		F44C926517F76CF8005A5F79 /* SHXLocalFolderCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SHXLocalFolderCatalog.m; path = Sync/SHXLocalFolderCatalog.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -168,6 +171,8 @@
 				F4C1AD0117F7B87C006107D3 /* SHXLocalFile.m */,
 				F4A2AEBF17FA1EF3004BECF8 /* SHXSharedLock.h */,
 				F4A2AEC217FA2249004BECF8 /* SHXSharedLock.m */,
+				F432BDE318049AA00086E664 /* SHXAppleCloudSyncingManager.h */,
+				F432BDE418049AA00086E664 /* SHXAppleCloudSyncingManager.m */,
 			);
 			name = Sync;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 				F4C1AD0217F7B87C006107D3 /* SHXLocalFile.m in Sources */,
 				F4C1ACFC17F79D5B006107D3 /* SHXFile.m in Sources */,
 				F44FCB3117F73D5C006DD0BA /* main.m in Sources */,
+				F432BDE518049AA00086E664 /* SHXAppleCloudSyncingManager.m in Sources */,
 				F4C1ACF817F7966D006107D3 /* SHXTestingAppDelegate.m in Sources */,
 				F4C1AD5D17F7E0B2006107D3 /* SHXStatusView.m in Sources */,
 			);

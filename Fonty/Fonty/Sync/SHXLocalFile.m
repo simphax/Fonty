@@ -17,6 +17,7 @@
     @autoreleasepool
     {
         _localPath = [[NSString alloc] initWithFormat:@"%@/%@",base,path];
+        _URL = [[NSURL alloc] initFileURLWithPath:_localPath];
         NSDictionary *attrs = [[NSFileManager defaultManager] attributesOfItemAtPath:_localPath error:nil];
         _fileSize = [[NSNumber alloc] initWithUnsignedLongLong:[attrs fileSize]];
     }
